@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Projects · Nguyen Minh Huy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- Background -->
+  <div class="aurora" aria-hidden="true">
+    <div class="aurora-blob b1"></div>
+    <div class="aurora-blob b2"></div>
+    <div class="aurora-blob b3"></div>
+    <div class="aurora-blob b4"></div>
+    <div class="aurora-blob b5"></div>
+  </div>
+
+  <!-- Nav -->
+<nav>
+    <a href="index.html" class="nav-logo">Nguyen Minh Huy</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="mailto:huy@email.com" class="nav-cta">Get in touch</a>
+  </nav>
+
+  <!-- Trang Tổng Hợp Projects -->
+  <div class="section-wrap" style="padding-top: calc(var(--nav-h) + 4rem); min-height: 100vh;">
+    <span class="section-ey">Portfolio</span>
+    <h1 class="section-h" style="font-size: 3rem; margin-bottom: 3rem;">All Projects Archive</h1>
+    
+    <div class="projects-grid">
+      <!-- Card 1 -->
+      <div class="proj-card modal-trigger" data-id="project-1">
+        <div class="proj-icon">🤖</div>
+        <h3>RL Grid Navigation Agent</h3>
+        <p>Reinforcement learning agent navigating randomized grid maps with Q-Learning.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">RL</span></div>
+          <span class="proj-link">Read more &rarr;</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="proj-card modal-trigger" data-id="project-2">
+        <div class="proj-icon">🕷️</div>
+        <h3>Exam Score Web Scraper</h3>
+        <p>Python scraper crawling Vietnamese national exam scores from government portal.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Regex</span></div>
+          <span class="proj-link">Read more &rarr;</span>
+        </div>
+      </div>
+
+      <!-- Bạn có thể copy paste thêm nhiều card tương tự ở đây -->
+    </div>
+  </div>
+
+  <!-- ══ MODAL (CỬA SỔ POPUP ẨN) ══ -->
+  <div class="modal-overlay" id="projectModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal">&times;</button>
+      <div class="modal-body">
+        <div class="modal-icon" id="modalIcon">📁</div>
+        <h2 id="modalTitle">Project Title</h2>
+        <div class="proj-tags" id="modalTags" style="margin-bottom: 1.5rem;">
+          <!-- Tags sẽ được load vào đây -->
+        </div>
+        <div id="modalDesc" style="color: var(--sub); line-height: 1.8; font-size: 0.95rem;">
+          <!-- Chi tiết project sẽ nằm ở đây -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span id="copyright-year"></span> Nguyen Minh Huy · Built with HTML, CSS & JS
+  </footer>
+
+</body>
+</html>
