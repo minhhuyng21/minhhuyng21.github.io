@@ -10,12 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// Kho dữ liệu chi tiết của các projects
+// 1. Kho dữ liệu chi tiết của các projects
 const projectsData = {
     "project-1": {
         icon: "🤖",
         title: "RL Grid Navigation Agent",
         tags: ["Python", "Reinforcement Learning", "Q-Learning", "PyTorch"],
+        fullPageUrl: "project1.html", // Link dẫn sang trang chi tiết riêng
         content: `
             <p><strong>Overview:</strong> This project focuses on building a reinforcement learning agent capable of navigating through a randomized, obstacle-filled grid to reach a target destination.</p>
             <br>
@@ -33,6 +34,7 @@ const projectsData = {
         icon: "🕷️",
         title: "Exam Score Web Scraper",
         tags: ["Python", "Regex", "Data Scraping"],
+        fullPageUrl: "project-2-detail.html", // Link dẫn sang trang chi tiết riêng
         content: `
             <p><strong>Overview:</strong> A robust Python tool designed to crawl and extract Vietnamese national high school exam scores directly from an official government portal.</p>
             <br>
@@ -44,36 +46,37 @@ const projectsData = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Phần code của copyright footer (đã có từ trước)
+    // Tự động cập nhật năm ở footer
     const yearSpan = document.getElementById('copyright-year');
     if (yearSpan) yearSpan.textContent = `© ${new Date().getFullYear()}`;
 
-    // ─── LOGIC CHO MODAL PROJECT ───
+    // ─── XỬ LÝ MODAL PROJECT ───
     const modalOverlay = document.getElementById('projectModal');
-    if (!modalOverlay) return; // Nếu trang hiện tại không có modal thì bỏ qua
+    if (!modalOverlay) return; // Nếu trang hiện tại không có modal thì dừng lại
 
     const closeBtn = document.getElementById('closeModal');
+    const expandBtn = document.getElementById('modalExpandBtn'); // Nút phóng to
     const cards = document.querySelectorAll('.modal-trigger');
 
-    // Khai báo các thành phần trong Modal cần thay đổi nội dung
+    // Các thành phần bên trong modal cần thay đổi nội dung
     const modalIcon = document.getElementById('modalIcon');
     const modalTitle = document.getElementById('modalTitle');
     const modalTags = document.getElementById('modalTags');
     const modalDesc = document.getElementById('modalDesc');
 
-    // Hàm mở modal và đổ dữ liệu
+    // 2. Lắng nghe sự kiện click vào từng card project
     cards.forEach(card => {
         card.addEventListener('click', () => {
             const projectId = card.getAttribute('data-id');
             const data = projectsData[projectId];
 
             if (data) {
-                // Đổ dữ liệu vào Modal
+                // Đổ nội dung vào modal
                 modalIcon.textContent = data.icon;
                 modalTitle.textContent = data.title;
                 modalDesc.innerHTML = data.content;
                 
-                // Render tags
+                // Render danh sách tags
                 modalTags.innerHTML = '';
                 data.tags.forEach(tag => {
                     const span = document.createElement('span');
@@ -82,23 +85,47 @@ document.addEventListener("DOMContentLoaded", () => {
                     modalTags.appendChild(span);
                 });
 
-                // Hiển thị Modal
+                // Cập nhật link cho nút phóng to (nếu có trang riêng)
+                if (expandBtn) {
+                    if (data.fullPageUrl) {
+                        expandBtn.href = data.fullPageUrl;
+                        expandBtn.style.display = 'flex';
+                    } else {
+                        expandBtn.style.display = 'none'; // Ẩn nút nếu chưa có trang riêng
+                    }
+                }
+
+                // Kích hoạt hiển thị modal và khóa cuộn nền
                 modalOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Khóa cuộn trang nền
+                document.body.style.overflow = 'hidden';
             }
         });
     });
 
-    // Hàm đóng Modal
+    // 3. Hàm đóng modal
     const closeModal = () => {
         modalOverlay.classList.remove('active');
-        document.body.style.overflow = 'auto'; // Mở lại cuộn trang
+        document.body.style.overflow = 'auto'; // Mở lại cuộn nền
     };
 
-    closeBtn.addEventListener('click', closeModal);
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
 
-    // Click ra ngoài vùng xám để đóng Modal
+    // Click vào vùng mờ xung quanh modal để đóng
     modalOverlay.addEventListener('click', (e) => {
         if (e.target === modalOverlay) closeModal();
     });
 });
+
+
+// ─── TỰ ĐỘNG XỬ LÝ INFINITE LOOP CHO CAROUSEL ───
+    const track = document.querySelector('.carousel-track');
+    if (track) {
+        // Copy toàn bộ thẻ trong track và dán thêm 1 lần nữa vào sau
+        const cards = Array.from(track.children);
+        cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            track.appendChild(clone);
+        });
+    }

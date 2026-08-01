@@ -402,26 +402,38 @@ footer {
   transform: translateY(0) scale(1);
 }
 
-.modal-close {
+
+
+.modal-controls {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+/* Kiểu dáng chung cho cả nút Đóng và nút Phóng To */
+.modal-btn {
   background: rgba(200, 216, 234, 0.1);
   color: var(--text);
   border: none;
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
 }
 
-.modal-close:hover {
+.modal-btn:hover {
   background: rgba(200, 216, 234, 0.25);
+  transform: translateY(-2px);
 }
 
 .modal-body {
@@ -446,3 +458,101 @@ footer {
 }
 
 
+
+
+/* ══════════════════════════════
+   AUTO-SCROLL CAROUSEL (CERTS)
+══════════════════════════════ */
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 1rem 0;
+  /* Hiệu ứng làm mờ 2 bên mép để card lướt vào/ra mượt hơn */
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  /* Chạy animation cuộn tự động */
+  animation: scrollInfinite 25s linear infinite;
+}
+
+/* Di chuột vào thì tạm dừng cuộn để người dùng dễ đọc */
+.carousel-container:hover .carousel-track {
+  animation-play-state: paused;
+}
+
+/* Định hình từng thẻ Certificate */
+.cert-card {
+  background: var(--card-bg, rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 280px; /* Độ rộng cố định của mỗi card */
+  flex-shrink: 0;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200, 216, 234, 0.3);
+}
+
+.cert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.cert-icon {
+  font-size: 1.8rem;
+}
+
+.cert-year {
+  font-size: 0.8rem;
+  color: var(--sub);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+}
+
+.cert-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cert-issuer {
+  font-size: 0.85rem;
+  color: var(--sub);
+  margin-bottom: 1rem;
+}
+
+.cert-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #60a5fa;
+  background: rgba(96, 165, 250, 0.1);
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+}
+
+/* Keyframes cho vòng lặp chạy vô tận */
+@keyframes scrollInfinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Chạy 50% độ dài rồi reset mượt */
+  }
+}

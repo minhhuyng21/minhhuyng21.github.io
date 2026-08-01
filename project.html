@@ -29,6 +29,14 @@
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
     <a href="mailto:huy@email.com" class="nav-cta">Get in touch</a>
+    <div class="nav-controls">
+    <!-- Dropdown hoặc nút bấm đổi Theme -->
+    <select id="themeSelect" class="nav-dropdown">
+      <option value="dark">🌙 Dark</option>
+      <option value="light">☀️ Light</option>
+      <option value="cyberpunk">🦄 Cyberpunk</option>
+    </select>
+  </div>
   </nav>
 
   <!-- Trang Tổng Hợp Projects -->
@@ -66,7 +74,21 @@
   <!-- ══ MODAL (CỬA SỔ POPUP ẨN) ══ -->
   <div class="modal-overlay" id="projectModal">
     <div class="modal-content">
-      <button class="modal-close" id="closeModal">&times;</button>
+      
+      <!-- Cụm nút điều khiển góc trên bên phải -->
+      <div class="modal-controls">
+        <!-- Nút phóng to / mở trang riêng -->
+        <a href="#" id="modalExpandBtn" class="modal-btn" title="Open full page" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+        <!-- Nút Đóng -->
+        <button class="modal-btn" id="closeModal" title="Close">&times;</button>
+      </div>
+
       <div class="modal-body">
         <div class="modal-icon" id="modalIcon">📁</div>
         <h2 id="modalTitle">Project Title</h2>
