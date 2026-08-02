@@ -34,15 +34,38 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="mailto:minhhuy210108@email.com" class="nav-cta">Get in touch</a>
-    <div class="nav-controls">
-    <!-- Dropdown hoặc nút bấm đổi Theme -->
-    <select id="themeSelect" class="nav-dropdown">
-      <option value="dark">🌙 Dark</option>
-      <option value="light">☀️ Light</option>
-      <option value="cyberpunk">🦄 Cyberpunk</option>
-    </select>
+
+ <!-- KHỐI BÊN PHẢI: Gom icon và nút Get in touch vào chung 1 div -->
+  <div class="nav-right">
+    <button id="langToggle" class="nav-icon-btn" title="Change Language">
+      <!-- Bộ chứa ẩn của Google Translate (không hiển thị ra ngoài giao diện) -->
+      <div id="google_translate_element" style="display: none;"></div>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path>
+      </svg>
+    </button>
+
+  <button id="themeToggle" class="nav-icon-btn" title="Toggle Theme">
+  <!-- Icon Colorful (Sparkles) -->
+  <svg id="icon-colorful" style="display: none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+    <path d="M5 3v4M3 5h4M19 3v4M17 5h4"/>
+  </svg>
+
+  <!-- Icon Light (Sun) -->
+  <svg id="icon-light" style="display: none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
+  </svg>
+
+  <!-- Icon Dark (Moon) -->
+  <svg id="icon-dark" style="display: none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+  </svg>
+</button>
+
+    <a href="mailto:minhhuy210108@gmail.com" class="nav-cta">Get in touch</a>
   </div>
+    
   </nav>
 
   <!-- ══ HERO ══ -->
@@ -122,61 +145,26 @@
   <div class="carousel-container">
     <div class="carousel-track">
       
-      <!-- Card 1: Giải thưởng -->
-      <div class="cert-card">
-        <div class="cert-header">
-          <span class="cert-icon">🏆</span>
-          <span class="cert-year">2026</span>
-        </div>
-        <h3>City-level Math Olympiad</h3>
-        <p class="cert-issuer">Ministry of Education</p>
-        <span class="cert-tag">Third Prize</span>
+      <div class="cert-card modal-trigger" data-id="cert-1">
+      <div class="cert-header">
+        <span class="cert-icon">🏆</span>
+        <span class="cert-year">2026</span>
       </div>
+      <h3>City-level Math Olympiad</h3>
+      <p class="cert-issuer">Ministry of Education</p>
+      <span class="cert-tag">Third Prize</span>
+    </div>
 
-      <!-- Card 2: Google Certificate -->
-      <div class="cert-card">
-        <div class="cert-header">
-          <span class="cert-icon">📜</span>
-          <span class="cert-year">2025</span>
-        </div>
-        <h3>Google Data Analytics</h3>
-        <p class="cert-issuer">Google / Coursera</p>
-        <span class="cert-tag">Professional Cert</span>
+    <!-- Card 2 -->
+    <div class="cert-card modal-trigger" data-id="cert-2">
+      <div class="cert-header">
+        <span class="cert-icon">📜</span>
+        <span class="cert-year">2025</span>
       </div>
-
-      <!-- Card 3: IELTS -->
-      <div class="cert-card">
-        <div class="cert-header">
-          <span class="cert-icon">🇬🇧</span>
-          <span class="cert-year">2024</span>
-        </div>
-        <h3>IELTS Academic 6.5</h3>
-        <p class="cert-issuer">British Council</p>
-        <span class="cert-tag">Overall 6.5</span>
-      </div>
-
-      <!-- Card 4: Hackathon -->
-      <div class="cert-card">
-        <div class="cert-header">
-          <span class="cert-icon">💻</span>
-          <span class="cert-year">2025</span>
-        </div>
-        <h3>AI Hackathon Runner-up</h3>
-        <p class="cert-issuer">Tech Club HCMUT</p>
-        <span class="cert-tag">Top 2 Team</span>
-      </div>
-
-      <!-- Card 5: Deep Learning -->
-      <div class="cert-card">
-        <div class="cert-header">
-          <span class="cert-icon">🧠</span>
-          <span class="cert-year">2025</span>
-        </div>
-        <h3>Deep Learning Specialization</h3>
-        <p class="cert-issuer">DeepLearning.AI</p>
-        <span class="cert-tag">5 Courses</span>
-      </div>
-
+      <h3>Google Data Analytics</h3>
+      <p class="cert-issuer">Google / Coursera</p>
+      <span class="cert-tag">Professional Cert</span>
+    </div>
     </div>
   </div>
 
@@ -188,45 +176,83 @@
 
 
   <!-- ══ PROJECTS ══ -->
-  <div class="section-wrap" id="projects">
-    <span class="section-ey">Projects</span>
-    <h2 class="section-h">Things I've built</h2>
-    <p class="section-sub">A selection of personal and research projects.</p>
-    <div class="projects-grid">
-      <div class="proj-card">
-        <div class="proj-icon">🤖</div>
-        <h3>RL Grid Navigation Agent</h3>
-        <p>Reinforcement learning agent navigating randomized grid maps. Built map generation with DFS/BFS, a JSON reward formula system, and a visualization renderer. Debugged reward hacking and generalization across 5×5 to 10×10 maps.</p>
-        <div class="proj-footer">
-          <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">RL</span><span class="proj-tag">BFS/DFS</span></div>
-          <a href="#" class="proj-link">GitHub ↗</a>
-        </div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-icon">🕷️</div>
-        <h3>Exam Score Web Scraper</h3>
-        <p>Python scraper crawling Vietnamese national exam scores from a government portal. Uses regex-based HTML parsing to extract structured data cleanly without external libraries.</p>
-        <div class="proj-footer">
-          <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Regex</span><span class="proj-tag">Scraping</span></div>
-          <a href="#" class="proj-link">GitHub ↗</a>
-        </div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-icon">📊</div>
-        <h3>Investment Fund Dashboard</h3>
-        <p>Interactive Chart.js dashboard comparing Vietnamese investment funds by CAGR and risk metrics. Visualizes salary compound interest scenarios for long-term financial planning.</p>
-        <div class="proj-footer">
-          <div class="proj-tags"><span class="proj-tag">JavaScript</span><span class="proj-tag">Chart.js</span><span class="proj-tag">Finance</span></div>
-          <a href="#" class="proj-link">Demo ↗</a>
-        </div>
+<div class="section-wrap" id="projects">
+  <span class="section-ey">Projects</span>
+  <h2 class="section-h">Things I've built</h2>
+  <p class="section-sub">A selection of personal and research projects.</p>
+  
+  <div class="projects-grid">
+    <!-- Card 1: Thêm modal-trigger và data-id="project-1" -->
+    <div class="proj-card modal-trigger" data-id="project-1" >
+      <div class="proj-icon">🤖</div>
+      <h3>RL Grid Navigation Agent</h3>
+      <p>Reinforcement learning agent navigating randomized grid maps...</p>
+      <div class="proj-footer">
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">RL</span><span class="proj-tag">BFS/DFS</span></div>
+        <a href="#" class="proj-link" onclick="event.stopPropagation();">GitHub ↗</a>
       </div>
     </div>
-    <div class="view-more-wrap">
-      <a href="project.html" class="btn-s">View all projects &rarr;</a>
+
+    <!-- Card 2: Thêm modal-trigger và data-id="project-2" -->
+    <div class="proj-card modal-trigger" data-id="project-2" style="cursor: pointer;">
+      <div class="proj-icon">🕷️</div>
+      <h3>Exam Score Web Scraper</h3>
+      <p>Python scraper crawling Vietnamese national exam scores...</p>
+      <div class="proj-footer">
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Regex</span><span class="proj-tag">Scraping</span></div>
+        <a href="#" class="proj-link" onclick="event.stopPropagation();">GitHub ↗</a>
+      </div>
+    </div>
+
+    <!-- Card 3: Thêm modal-trigger và data-id="project-3" (nhớ thêm key "project-3" vào projectsData) -->
+    <div class="proj-card modal-trigger" data-id="project-3" style="cursor: pointer;">
+      <div class="proj-icon">📊</div>
+      <h3>Investment Fund Dashboard</h3>
+      <p>Interactive Chart.js dashboard comparing Vietnamese investment funds...</p>
+      <div class="proj-footer">
+        <div class="proj-tags"><span class="proj-tag">JavaScript</span><span class="proj-tag">Chart.js</span><span class="proj-tag">Finance</span></div>
+        <a href="#" class="proj-link" onclick="event.stopPropagation();">Demo ↗</a>
+      </div>
     </div>
   </div>
 
-  <hr class="section-div">
+  <div class="view-more-wrap">
+    <a href="project.html" class="btn-s">View all projects &rarr;</a>
+  </div>
+</div>
+
+<hr class="section-div">
+
+< <!-- ══ MODAL (CỬA SỔ POPUP ẨN) ══ -->
+  <div class="modal-overlay" id="projectModal">
+    <div class="modal-content">
+      
+      <!-- Cụm nút điều khiển góc trên bên phải -->
+      <div class="modal-controls">
+        <!-- Nút phóng to / mở trang riêng -->
+        <a href="#" id="modalExpandBtn" class="modal-btn" title="Open full page" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+        <!-- Nút Đóng -->
+        <button class="modal-btn" id="closeModal" title="Close">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-icon" id="modalIcon">📁</div>
+        <h2 id="modalTitle">Project Title</h2>
+        <div class="proj-tags" id="modalTags" style="margin-bottom: 1.5rem;">
+          <!-- Tags sẽ được load vào đây -->
+        </div>
+        <div id="modalDesc" style="color: var(--sub); line-height: 1.8; font-size: 0.95rem;">
+          <!-- Chi tiết project sẽ nằm ở đây -->
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ══ EXPERIENCE ══ -->
   <div class="section-wrap" id="experience">
@@ -267,7 +293,7 @@
     <div class="contact-links">
       <a href="mailto:minhhuy210108@email.com" class="contact-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        Email
+        minhhuy210108@email.com
       </a>
       <a href="https://github.com/minhhuyng21" target="_blank" class="contact-link">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>

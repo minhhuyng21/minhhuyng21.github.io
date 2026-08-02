@@ -4,25 +4,94 @@
   padding: 0;
 }
 
-:root {
-  /* ── Palette suy luận từ ảnh ── */
-  --bg:          #18253d;   /* navy chính của ảnh */
-  --blob-dark:   #0b1525;   /* blob tối: vùng đen sâu trên ảnh */
-  --blob-mid:    #223355;   /* navy mid: lớp giữa */
-  --blob-silver: #8faabf;   /* silver-blue: vùng sáng góc dưới */
-  --blob-white:  #c8d8ea;   /* near-white highlight */
-
-  /* ── Text: phải đọc được trên nền navy ── */
-  --text:    #eef2f8;       /* trắng ấm, không chói */
-  --sub:     #8faabf;       /* silver-blue từ ảnh → dùng làm subtext */
+/* ══════════════════════════════
+   1. COLORFUL MODE (Mặc định)
+══════════════════════════════ */
+:root, [data-theme="colorful"] {
+  --bg:          #18253d;
+  --blob-dark:   #0b1525;
+  --blob-mid:    #223355;
+  --blob-silver: #8faabf;
+  --blob-white:  #c8d8ea;
+  
+  --text:    #eef2f8;
+  --sub:     #8faabf;
   --muted:   #5a7a96;
   --border:  rgba(200,216,234,0.12);
   --card:    rgba(255,255,255,0.05);
   --card-b:  rgba(200,216,234,0.1);
-  --accent:  #c8d8ea;       /* silver highlight làm accent */
+  --accent:  #c8d8ea;
   --tag-bg:  rgba(200,216,234,0.09);
   --nav-h:   66px;
 }
+
+/* ══════════════════════════════
+   2. LIGHT MODE (Phẳng, nền sáng)
+══════════════════════════════ */
+[data-theme="light"] {
+  --bg:          #ffffff; /* Nền trắng trơn */
+  --blob-dark:   #ffffff; /* Ẩn toàn bộ hiệu ứng aurora/blob */
+  --blob-mid:    #ffffff;
+  --blob-silver: #ffffff;
+  --blob-white:  #ffffff;
+  
+  --text:    #0f172a; /* Chữ màu đen xám */
+  --sub:     #475569;
+  --muted:   #94a3b8;
+  --border:  rgba(15, 23, 42, 0.1);
+  --card:    #ffffff;
+  --card-b:  rgba(15, 23, 42, 0.08);
+  --accent:  #2563eb;
+  --tag-bg:  rgba(37, 99, 235, 0.1);
+}
+
+/* ══════════════════════════════
+   3. DARK MODE (Phẳng, nền tối)
+══════════════════════════════ */
+[data-theme="dark"] {
+  --bg:          #090a0f; /* Đen tuyền, hơi ngả xanh */
+  --blob-dark:   transparent;
+  --blob-mid:    transparent;
+  --blob-silver: transparent;
+  --blob-white:  transparent;
+  
+  --text:    #f8fafc;
+  --sub:     #94a3b8;
+  --muted:   #475569;
+  --border:  rgba(255, 255, 255, 0.1);
+  --card:    rgba(255, 255, 255, 0.03);
+  --card-b:  rgba(255, 255, 255, 0.05);
+  --accent:  #38bdf8;
+  --tag-bg:  rgba(56, 189, 248, 0.1);
+}
+
+/* ══════════════════════════════
+   ÉP XÓA MỌI GRADIENT/ẢNH NỀN Ở LIGHT & DARK MODE
+══════════════════════════════ */
+
+[data-theme="light"] body,
+[data-theme="dark"] body {
+  background-color: var(--bg) !important;
+  background-image: none !important; /* Xóa sạch mọi gradient, aurora dính trên body */
+}
+
+/* Đảm bảo toàn bộ html cũng sạch sẽ */
+[data-theme="light"] html,
+[data-theme="dark"] html {
+  background: var(--bg) !important;
+}
+
+/* ══════════════════════════════
+   4. CSS HỖ TRỢ HIỆU ỨNG VIEW TRANSITIONS (LAN TỎA)
+══════════════════════════════ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none; /* Tắt hiệu ứng mờ (cross-fade) mặc định */
+  mix-blend-mode: normal;
+}
+
+
+
 
 html { scroll-behavior: smooth; }
 
@@ -41,6 +110,24 @@ body {
   position: fixed; inset: 0; z-index: 0;
   overflow: hidden;
   background: var(--bg);
+  
+  /* Thêm dòng này để lúc ẩn/hiện mượt mà hơn */
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; 
+}
+
+/* ... (Các khối .b1, .b2, .b3, @keyframes... của bạn vẫn giữ nguyên ở đây) ... */
+
+/* 3. Dán đoạn code ẩn Aurora ở tít dưới cùng, đứng độc lập hoàn toàn */
+[data-theme="light"] .aurora {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .aurora {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none;
 }
 
 .aurora-blob {
@@ -415,8 +502,9 @@ footer {
 }
 
 /* Kiểu dáng chung cho cả nút Đóng và nút Phóng To */
+
 .modal-btn {
-  background: rgba(200, 216, 234, 0.1);
+  background: var(--card-b); /* Thay rgba cứng bằng biến viền thẻ */
   color: var(--text);
   border: none;
   width: 36px;
@@ -432,7 +520,7 @@ footer {
 }
 
 .modal-btn:hover {
-  background: rgba(200, 216, 234, 0.25);
+  background: var(--border); /* Đổi màu khi hover theo theme */
   transform: translateY(-2px);
 }
 
@@ -547,6 +635,25 @@ footer {
   border-radius: 6px;
 }
 
+
+/* Biến thẻ thành nút bấm */
+.cert-card.modal-trigger {
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s; /* Thêm hiệu ứng mượt mà nếu muốn */
+}
+
+/* HIỆU ỨNG QUAN TRỌNG: Dừng toàn bộ băng chuyền khi đưa chuột vào khu vực container */
+.carousel-container:hover .carousel-track {
+  animation-play-state: paused !important;
+}
+
+/* (Tùy chọn) Hover vào card nào thì card đó sáng lên/nhô lên một chút */
+.cert-card.modal-trigger:hover {
+  transform: translateY(-5px) scale(1.02);
+  background: rgba(255, 255, 255, 0.05); /* Tùy chỉnh theo theme của bạn */
+}
+
+
 /* Keyframes cho vòng lặp chạy vô tận */
 @keyframes scrollInfinite {
   0% {
@@ -556,3 +663,34 @@ footer {
     transform: translateX(-50%); /* Chạy 50% độ dài rồi reset mượt */
   }
 }
+
+
+/* Khung chứa các thành phần góc bên phải Navbar */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Tạo khoảng cách đều 12px giữa các nút, không bao giờ bị dính đè */
+}
+
+/* Đảm bảo các nút Icon có kích thước cố định, không bị co giãn */
+.nav-icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Giữ nguyên kích thước nút, không cho bị đè nén */
+  transition: background 0.2s, transform 0.2s;
+}
+
+.nav-icon-btn:hover {
+  background: var(--card-b);
+  transform: scale(1.08);
+}
+
+
+
