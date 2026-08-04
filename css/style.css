@@ -13,7 +13,7 @@
   --blob-mid:    #223355;
   --blob-silver: #8faabf;
   --blob-white:  #c8d8ea;
-  
+
   --text:    #eef2f8;
   --sub:     #8faabf;
   --muted:   #5a7a96;
@@ -23,75 +23,118 @@
   --accent:  #c8d8ea;
   --tag-bg:  rgba(200,216,234,0.09);
   --nav-h:   66px;
+
+  /* ── Thêm mới ── */
+  --nav-bg:          rgba(18,30,52,0.55);
+  --modal-overlay:   rgba(10,16,30,0.85);
+  --card-hover:      rgba(255,255,255,0.08);
+  --card-hover-shadow: rgba(0,0,0,0.35);
+  --cert-year-bg:    rgba(255,255,255,0.07);
+  --cert-tag-color:  #60a5fa;
+  --cert-tag-bg:     rgba(96,165,250,0.1);
+  --cert-border-hover: rgba(200,216,234,0.3);
+  --btn-p-color:     #0d1929;
+  --contact-hover:   rgba(200,216,234,0.14);
+  --timeline-line:   var(--accent);
+  --hero-gradient:   linear-gradient(120deg, #c8d8ea 0%, #ddeaf5 40%, #8faabf 100%);
 }
 
 /* ══════════════════════════════
-   2. LIGHT MODE (Phẳng, nền sáng)
+   2. LIGHT MODE
 ══════════════════════════════ */
 [data-theme="light"] {
-  --bg:          #ffffff; /* Nền trắng trơn */
-  --blob-dark:   #ffffff; /* Ẩn toàn bộ hiệu ứng aurora/blob */
-  --blob-mid:    #ffffff;
-  --blob-silver: #ffffff;
-  --blob-white:  #ffffff;
-  
-  --text:    #0f172a; /* Chữ màu đen xám */
-  --sub:     #475569;
-  --muted:   #94a3b8;
-  --border:  rgba(15, 23, 42, 0.1);
-  --card:    #ffffff;
-  --card-b:  rgba(15, 23, 42, 0.08);
-  --accent:  #2563eb;
-  --tag-bg:  rgba(37, 99, 235, 0.1);
+  --bg:            #e6eef9;
+  --bg-secondary:  #f0f6ff;
+
+  --blob-dark:     #0d2550;
+  --blob-mid:      #4b72b8;
+  --blob-silver:   #dce8ff;
+  --blob-white:    #ffffff;
+
+  --text:   #0d2040;
+  --sub:    #4a637d;
+  --muted:  #7a96b0;
+
+  --accent: #1d4ed8;
+  --navy:   #0d2550;
+  --blue:   #1a3f80;
+
+  --border: rgba(30,80,180,0.13);
+  --card:   rgba(255,255,255,0.72);
+  --card-b: rgba(30,80,180,0.13);
+  --tag-bg: rgba(29,78,216,0.10);
+
+  /* ── Thêm mới ── */
+  --nav-bg:          rgba(230,238,249,0.80);
+  --modal-overlay:   rgba(13,32,64,0.55);
+  --card-hover:      rgba(255,255,255,0.92);
+  --card-hover-shadow: rgba(30,80,180,0.15);
+  --cert-year-bg:    rgba(29,78,216,0.08);
+  --cert-tag-color:  #1d4ed8;
+  --cert-tag-bg:     rgba(29,78,216,0.10);
+  --cert-border-hover: rgba(29,78,216,0.35);
+  --btn-p-color:     #ffffff;
+  --contact-hover:   rgba(29,78,216,0.10);
+  --timeline-line:   var(--accent);
+  --hero-gradient:   linear-gradient(120deg, #1d4ed8 0%, #3b6fd4 40%, #0d2550 100%);
 }
 
 /* ══════════════════════════════
-   3. DARK MODE (Phẳng, nền tối)
+   3. DARK MODE
 ══════════════════════════════ */
 [data-theme="dark"] {
-  --bg:          #090a0f; /* Đen tuyền, hơi ngả xanh */
+  --bg:          #090a0f;
   --blob-dark:   transparent;
   --blob-mid:    transparent;
   --blob-silver: transparent;
   --blob-white:  transparent;
-  
+
   --text:    #f8fafc;
   --sub:     #94a3b8;
   --muted:   #475569;
-  --border:  rgba(255, 255, 255, 0.1);
-  --card:    rgba(255, 255, 255, 0.03);
-  --card-b:  rgba(255, 255, 255, 0.05);
+  --border:  rgba(255,255,255,0.1);
+  --card:    rgba(255,255,255,0.03);
+  --card-b:  rgba(255,255,255,0.05);
   --accent:  #38bdf8;
-  --tag-bg:  rgba(56, 189, 248, 0.1);
+  --tag-bg:  rgba(56,189,248,0.1);
+
+  /* ── Thêm mới ── */
+  --nav-bg:          rgba(9,10,15,0.80);
+  --modal-overlay:   rgba(0,0,0,0.88);
+  --card-hover:      rgba(255,255,255,0.07);
+  --card-hover-shadow: rgba(0,0,0,0.5);
+  --cert-year-bg:    rgba(255,255,255,0.05);
+  --cert-tag-color:  #38bdf8;
+  --cert-tag-bg:     rgba(56,189,248,0.10);
+  --cert-border-hover: rgba(56,189,248,0.35);
+  --btn-p-color:     #090a0f;
+  --contact-hover:   rgba(56,189,248,0.10);
+  --timeline-line:   var(--accent);
+  --hero-gradient:   linear-gradient(120deg, #38bdf8 0%, #7dd3fc 40%, #94a3b8 100%);
 }
 
 /* ══════════════════════════════
-   ÉP XÓA MỌI GRADIENT/ẢNH NỀN Ở LIGHT & DARK MODE
+   XÓA GRADIENT/ẢNH NỀN Ở LIGHT & DARK MODE
 ══════════════════════════════ */
-
 [data-theme="light"] body,
 [data-theme="dark"] body {
   background-color: var(--bg) !important;
-  background-image: none !important; /* Xóa sạch mọi gradient, aurora dính trên body */
+  background-image: none !important;
 }
 
-/* Đảm bảo toàn bộ html cũng sạch sẽ */
 [data-theme="light"] html,
 [data-theme="dark"] html {
   background: var(--bg) !important;
 }
 
 /* ══════════════════════════════
-   4. CSS HỖ TRỢ HIỆU ỨNG VIEW TRANSITIONS (LAN TỎA)
+   VIEW TRANSITIONS
 ══════════════════════════════ */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation: none; /* Tắt hiệu ứng mờ (cross-fade) mặc định */
+  animation: none;
   mix-blend-mode: normal;
 }
-
-
-
 
 html { scroll-behavior: smooth; }
 
@@ -110,20 +153,10 @@ body {
   position: fixed; inset: 0; z-index: 0;
   overflow: hidden;
   background: var(--bg);
-  
-  /* Thêm dòng này để lúc ẩn/hiện mượt mà hơn */
-  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; 
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 }
 
-/* ... (Các khối .b1, .b2, .b3, @keyframes... của bạn vẫn giữ nguyên ở đây) ... */
-
-/* 3. Dán đoạn code ẩn Aurora ở tít dưới cùng, đứng độc lập hoàn toàn */
-[data-theme="light"] .aurora {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none;
-}
-
+[data-theme="light"] .aurora,
 [data-theme="dark"] .aurora {
   opacity: 0 !important;
   visibility: hidden !important;
@@ -178,23 +211,23 @@ body {
 
 @keyframes drift1 {
   from { transform: translate(0, 0) scale(1); }
-  to { transform: translate(6vw, 8vh) scale(1.12); }
+  to   { transform: translate(6vw, 8vh) scale(1.12); }
 }
 @keyframes drift2 {
   from { transform: translate(0, 0) scale(1.05); }
-  to { transform: translate(-8vw, 10vh) scale(.9); }
+  to   { transform: translate(-8vw, 10vh) scale(.9); }
 }
 @keyframes drift3 {
   from { transform: translate(0, 0) scale(1); }
-  to { transform: translate(-10vw, -12vh) scale(1.18); }
+  to   { transform: translate(-10vw, -12vh) scale(1.18); }
 }
 @keyframes drift4 {
   from { transform: translate(0, 0) scale(1); }
-  to { transform: translate(8vw, -6vh) scale(1.1); }
+  to   { transform: translate(8vw, -6vh) scale(1.1); }
 }
 @keyframes drift5 {
   from { transform: translate(0, 0) scale(1); }
-  to { transform: translate(5vw, 10vh) scale(.88); }
+  to   { transform: translate(5vw, 10vh) scale(.88); }
 }
 
 .aurora::after {
@@ -203,16 +236,19 @@ body {
   pointer-events: none;
 }
 
-/* ── NAV ── */
+/* ══════════════════════════════
+   NAV
+══════════════════════════════ */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   height: var(--nav-h);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 3.5rem;
-  background: rgba(18, 30, 52, 0.55);
+  background: var(--nav-bg);           /* ✅ Đã fix */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
+  transition: background 0.3s ease;
 }
 .nav-logo {
   font-size: .76rem; font-weight: 700; letter-spacing: .14em;
@@ -225,13 +261,38 @@ nav {
 }
 .nav-links a:hover { color: var(--text); }
 .nav-cta {
-  background: rgba(200,216,234,0.12); color: var(--accent);
-  border: 1px solid rgba(200,216,234,0.25); border-radius: 5px;
+  background: var(--tag-bg); color: var(--accent);
+  border: 1px solid var(--card-b); border-radius: 5px;
   padding: .46rem 1.2rem; font-size: .82rem; font-weight: 600;
   text-decoration: none; cursor: pointer;
   transition: background .2s, transform .15s;
 }
-.nav-cta:hover { background: rgba(200,216,234,0.2); transform: translateY(-1px); }
+.nav-cta:hover { background: var(--card-b); transform: translateY(-1px); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.nav-icon-btn:hover {
+  background: var(--card-b);
+  transform: scale(1.08);
+}
 
 /* ══════════════════════════════
    HERO
@@ -246,10 +307,10 @@ nav {
 }
 .eyebrow {
   display: inline-flex; align-items: center; gap: .45rem;
-  border: 1px solid rgba(200,216,234,0.25); border-radius: 999px;
+  border: 1px solid var(--card-b); border-radius: 999px;
   padding: .28rem .95rem; font-size: .68rem; font-weight: 700;
   letter-spacing: .1em; color: var(--sub); text-transform: uppercase;
-  background: rgba(200,216,234,0.07); margin-bottom: 1.8rem;
+  background: var(--tag-bg); margin-bottom: 1.8rem;
 }
 .eyebrow::before {
   content: ''; width: 6px; height: 6px; border-radius: 50%;
@@ -262,7 +323,7 @@ nav {
 }
 .hero-left h1 em {
   font-style: normal;
-  background: linear-gradient(120deg, var(--accent) 0%, #ddeaf5 40%, var(--sub) 100%);
+  background: var(--hero-gradient);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
 }
@@ -273,7 +334,7 @@ nav {
 .cta-row { display: flex; gap: .9rem; flex-wrap: wrap; margin-bottom: 3.8rem; }
 .btn-p {
   display: inline-flex; align-items: center; gap: .4rem;
-  background: var(--accent); color: #0d1929;
+  background: var(--accent); color: var(--btn-p-color);  /* ✅ Đã fix */
   border: none; border-radius: 5px;
   padding: .74rem 1.55rem; font-size: .88rem; font-weight: 700;
   text-decoration: none; cursor: pointer;
@@ -283,12 +344,12 @@ nav {
 .btn-s {
   display: inline-flex; align-items: center;
   background: transparent; color: var(--text);
-  border: 1px solid rgba(200,216,234,0.28); border-radius: 5px;
+  border: 1px solid var(--card-b); border-radius: 5px;
   padding: .74rem 1.55rem; font-size: .88rem; font-weight: 600;
   text-decoration: none; cursor: pointer;
   transition: background .2s, transform .15s;
 }
-.btn-s:hover { background: rgba(200,216,234,0.09); transform: translateY(-1px); }
+.btn-s:hover { background: var(--tag-bg); transform: translateY(-1px); }
 .stats {
   display: flex; gap: 2.8rem;
   border-top: 1px solid var(--border); padding-top: 1.7rem;
@@ -355,12 +416,12 @@ nav {
 }
 .proj-card:hover {
   transform: translateY(-3px);
-  background: rgba(255,255,255,0.08);
-  box-shadow: 0 12px 32px rgba(0,0,0,.35);
+  background: var(--card-hover);              /* ✅ Đã fix */
+  box-shadow: 0 12px 32px var(--card-hover-shadow); /* ✅ Đã fix */
 }
 .proj-icon {
   width: 36px; height: 36px; border-radius: 7px;
-  background: rgba(200,216,234,0.12); border: 1px solid rgba(200,216,234,0.18);
+  background: var(--tag-bg); border: 1px solid var(--card-b);
   display: flex; align-items: center; justify-content: center;
   font-size: 1rem; margin-bottom: .9rem;
 }
@@ -373,7 +434,7 @@ nav {
 .proj-tags { display: flex; gap: .35rem; flex-wrap: wrap; }
 .proj-tag {
   font-size: .67rem; font-weight: 600; letter-spacing: .04em;
-  background: rgba(200,216,234,0.09); color: var(--sub);
+  background: var(--tag-bg); color: var(--sub);  /* ✅ Đã fix */
   border-radius: 3px; padding: .17rem .5rem;
 }
 .proj-link { font-size: .78rem; font-weight: 600; color: var(--accent); text-decoration: none; flex-shrink: 0; }
@@ -381,14 +442,14 @@ nav {
 
 .view-more-wrap {
   text-align: right;
-  margin-top: 2rem; /* Cách lưới project phía trên một khoảng */
+  margin-top: 2rem;
 }
 
 /* ── Timeline ── */
 .timeline { margin-top: 2.5rem; position: relative; padding-left: 1.8rem; }
 .timeline::before {
   content: ''; position: absolute; left: 0; top: 6px; bottom: 6px;
-  width: 1px; background: linear-gradient(to bottom, var(--accent), transparent);
+  width: 1px; background: linear-gradient(to bottom, var(--timeline-line), transparent);
 }
 .tl-item { position: relative; margin-bottom: 2.3rem; }
 .tl-item::before {
@@ -407,12 +468,12 @@ nav {
 .contact-links { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; margin-top: .5rem; }
 .contact-link {
   display: inline-flex; align-items: center; gap: .45rem;
-  background: rgba(200,216,234,0.07); border: 1px solid var(--border);
+  background: var(--tag-bg); border: 1px solid var(--border);  /* ✅ Đã fix */
   border-radius: 7px; padding: .65rem 1.3rem;
   font-size: .85rem; font-weight: 600; color: var(--text);
   text-decoration: none; transition: background .2s, transform .15s;
 }
-.contact-link:hover { background: rgba(200,216,234,0.14); transform: translateY(-2px); }
+.contact-link:hover { background: var(--contact-hover); transform: translateY(-2px); } /* ✅ Đã fix */
 .contact-link svg { width: 15px; height: 15px; flex-shrink: 0; }
 
 footer {
@@ -421,48 +482,20 @@ footer {
   font-size: .74rem; color: var(--muted);
 }
 
-/* ── Responsive ── */
-@media(max-width: 820px) {
-  .hero-wrap { grid-template-columns: 1fr; padding: calc(var(--nav-h) + 3rem) 1.5rem 3rem; }
-  .hero-right { display: none; }
-  nav { padding: 0 1.5rem; }
-  .nav-links { display: none; }
-  .section-wrap { padding: 3.5rem 1.5rem; }
-  .about-grid { grid-template-columns: 1fr; }
-  .section-div { width: calc(100% - 3rem); }
-  .stats { gap: 1.8rem; }
-}
-@media(prefers-reduced-motion: reduce) {
-  .aurora-blob { animation: none !important; }
-  * { transition: none !important; }
-}
-
-
-
-
 /* ══════════════════════════════
-   MODAL (PROJECT DETAILS)
+   MODAL
 ══════════════════════════════ */
-.proj-card.modal-trigger {
-  cursor: pointer;
-}
-.proj-card.modal-trigger:hover .proj-link {
-  text-decoration: underline;
-}
+.proj-card.modal-trigger { cursor: pointer; }
 
 .modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 16, 30, 0.85); /* Nền tối mờ */
+  position: fixed; inset: 0;
+  background: var(--modal-overlay);  /* ✅ Đã fix */
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   padding: 2rem;
-  opacity: 0;
-  pointer-events: none;
+  opacity: 0; pointer-events: none;
   transition: opacity 0.3s ease;
 }
 
@@ -475,222 +508,131 @@ footer {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 12px;
-  width: 100%;
-  max-width: 700px;
-  max-height: 85vh;
-  overflow-y: auto;
-  position: relative;
+  width: 100%; max-width: 700px; max-height: 85vh;
+  overflow-y: auto; position: relative;
   transform: translateY(20px) scale(0.95);
   transition: transform 0.3s ease;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 25px 50px -12px var(--card-hover-shadow);  /* ✅ Đã fix */
 }
 
 .modal-overlay.active .modal-content {
   transform: translateY(0) scale(1);
 }
 
-
-
 .modal-controls {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  z-index: 10;
+  position: absolute; top: 1.25rem; right: 1.25rem;
+  display: flex; align-items: center; gap: 0.5rem; z-index: 10;
 }
 
-/* Kiểu dáng chung cho cả nút Đóng và nút Phóng To */
-
 .modal-btn {
-  background: var(--card-b); /* Thay rgba cứng bằng biến viền thẻ */
+  background: var(--card-b);
   color: var(--text);
-  border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  text-decoration: none;
+  border: none; width: 36px; height: 36px; border-radius: 50%;
+  font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; text-decoration: none;
   transition: background 0.2s, transform 0.2s;
 }
 
 .modal-btn:hover {
-  background: var(--border); /* Đổi màu khi hover theo theme */
+  background: var(--border);
   transform: translateY(-2px);
 }
 
-.modal-body {
-  padding: 3rem;
-}
-
-.modal-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
+.modal-body { padding: 3rem; }
+.modal-icon { font-size: 2.5rem; margin-bottom: 1rem; }
 .modal-body h2 {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--text);
-  margin-bottom: 0.8rem;
+  font-size: 2rem; font-weight: 800; color: var(--text); margin-bottom: 0.8rem;
 }
-
-@media(max-width: 820px) {
-  .modal-body { padding: 2rem 1.5rem; }
-  .modal-overlay { padding: 1rem; }
-}
-
-
-
 
 /* ══════════════════════════════
-   AUTO-SCROLL CAROUSEL (CERTS)
+   CAROUSEL (CERTS)
 ══════════════════════════════ */
 .carousel-container {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  padding: 1rem 0;
-  /* Hiệu ứng làm mờ 2 bên mép để card lướt vào/ra mượt hơn */
+  width: 100%; overflow: hidden; position: relative; padding: 1rem 0;
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .carousel-track {
-  display: flex;
-  gap: 1.5rem;
-  width: max-content;
-  /* Chạy animation cuộn tự động */
+  display: flex; gap: 1.5rem; width: max-content;
   animation: scrollInfinite 25s linear infinite;
 }
 
-/* Di chuột vào thì tạm dừng cuộn để người dùng dễ đọc */
 .carousel-container:hover .carousel-track {
-  animation-play-state: paused;
+  animation-play-state: paused !important;
 }
 
-/* Định hình từng thẻ Certificate */
 .cert-card {
-  background: var(--card-bg, rgba(255, 255, 255, 0.03));
-  border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
-  border-radius: 12px;
-  padding: 1.5rem;
-  width: 280px; /* Độ rộng cố định của mỗi card */
-  flex-shrink: 0;
+  background: var(--card);            /* ✅ Đã fix (từ --card-bg sai → --card đúng) */
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.5rem;
+  width: 280px; flex-shrink: 0;
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .cert-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(200, 216, 234, 0.3);
+  border-color: var(--cert-border-hover);  /* ✅ Đã fix */
 }
 
 .cert-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 1rem;
 }
 
-.cert-icon {
-  font-size: 1.8rem;
-}
+.cert-icon { font-size: 1.8rem; }
 
 .cert-year {
-  font-size: 0.8rem;
-  color: var(--sub);
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.2rem 0.6rem;
-  border-radius: 20px;
+  font-size: 0.8rem; color: var(--sub);
+  background: var(--cert-year-bg);  /* ✅ Đã fix */
+  padding: 0.2rem 0.6rem; border-radius: 20px;
 }
 
 .cert-card h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--text);
+  font-size: 1.1rem; font-weight: 700; color: var(--text);
   margin-bottom: 0.3rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
-.cert-issuer {
-  font-size: 0.85rem;
-  color: var(--sub);
-  margin-bottom: 1rem;
-}
+.cert-issuer { font-size: 0.85rem; color: var(--sub); margin-bottom: 1rem; }
 
 .cert-tag {
   display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #60a5fa;
-  background: rgba(96, 165, 250, 0.1);
-  padding: 0.25rem 0.6rem;
-  border-radius: 6px;
+  font-size: 0.75rem; font-weight: 600;
+  color: var(--cert-tag-color);      /* ✅ Đã fix */
+  background: var(--cert-tag-bg);    /* ✅ Đã fix */
+  padding: 0.25rem 0.6rem; border-radius: 6px;
 }
 
+.cert-card.modal-trigger { cursor: pointer; }
 
-/* Biến thẻ thành nút bấm */
-.cert-card.modal-trigger {
-  cursor: pointer;
-  transition: transform 0.2s, background 0.2s; /* Thêm hiệu ứng mượt mà nếu muốn */
-}
-
-/* HIỆU ỨNG QUAN TRỌNG: Dừng toàn bộ băng chuyền khi đưa chuột vào khu vực container */
-.carousel-container:hover .carousel-track {
-  animation-play-state: paused !important;
-}
-
-/* (Tùy chọn) Hover vào card nào thì card đó sáng lên/nhô lên một chút */
 .cert-card.modal-trigger:hover {
   transform: translateY(-5px) scale(1.02);
-  background: rgba(255, 255, 255, 0.05); /* Tùy chỉnh theo theme của bạn */
+  background: var(--card-hover);     /* ✅ Đã fix */
 }
 
-
-/* Keyframes cho vòng lặp chạy vô tận */
 @keyframes scrollInfinite {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%); /* Chạy 50% độ dài rồi reset mượt */
-  }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-
-/* Khung chứa các thành phần góc bên phải Navbar */
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem; /* Tạo khoảng cách đều 12px giữa các nút, không bao giờ bị dính đè */
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media(max-width: 820px) {
+  .hero-wrap { grid-template-columns: 1fr; padding: calc(var(--nav-h) + 3rem) 1.5rem 3rem; }
+  .hero-right { display: none; }
+  nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  .section-wrap { padding: 3.5rem 1.5rem; }
+  .about-grid { grid-template-columns: 1fr; }
+  .section-div { width: calc(100% - 3rem); }
+  .stats { gap: 1.8rem; }
+  .modal-body { padding: 2rem 1.5rem; }
+  .modal-overlay { padding: 1rem; }
 }
 
-/* Đảm bảo các nút Icon có kích thước cố định, không bị co giãn */
-.nav-icon-btn {
-  background: transparent;
-  border: none;
-  color: var(--text);
-  padding: 6px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0; /* Giữ nguyên kích thước nút, không cho bị đè nén */
-  transition: background 0.2s, transform 0.2s;
+@media(prefers-reduced-motion: reduce) {
+  .aurora-blob { animation: none !important; }
+  * { transition: none !important; }
 }
-
-.nav-icon-btn:hover {
-  background: var(--card-b);
-  transform: scale(1.08);
-}
-
-
-
