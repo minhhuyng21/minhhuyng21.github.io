@@ -160,92 +160,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target === modalOverlay) closeModal();
     });
 });
-// document.addEventListener("DOMContentLoaded", () => {
-//     // Tự động cập nhật năm ở footer
-//     const yearSpan = document.getElementById('copyright-year');
-//     if (yearSpan) yearSpan.textContent = `© ${new Date().getFullYear()}`;
-
-//     // ─── XỬ LÝ MODAL PROJECT ───
-//     const modalOverlay = document.getElementById('projectModal');
-//     if (!modalOverlay) return; // Nếu trang hiện tại không có modal thì dừng lại
-
-//     const closeBtn = document.getElementById('closeModal');
-//     const expandBtn = document.getElementById('modalExpandBtn'); // Nút phóng to
-//     const cards = document.querySelectorAll('.modal-trigger');
-
-//     // Các thành phần bên trong modal cần thay đổi nội dung
-//     const modalIcon = document.getElementById('modalIcon');
-//     const modalTitle = document.getElementById('modalTitle');
-//     const modalTags = document.getElementById('modalTags');
-//     const modalDesc = document.getElementById('modalDesc');
-
-//     // 2. Lắng nghe sự kiện click vào từng card project
-//     cards.forEach(card => {
-//         card.addEventListener('click', () => {
-//             const projectId = card.getAttribute('data-id');
-//             const data = projectsData[projectId];
-
-//             if (data) {
-//                 // Đổ nội dung vào modal
-//                 modalIcon.textContent = data.icon;
-//                 modalTitle.textContent = data.title;
-//                 modalDesc.innerHTML = data.content;
-                
-//                 // Render danh sách tags
-//                 modalTags.innerHTML = '';
-//                 data.tags.forEach(tag => {
-//                     const span = document.createElement('span');
-//                     span.className = 'proj-tag';
-//                     span.textContent = tag;
-//                     modalTags.appendChild(span);
-//                 });
-
-//                 // Cập nhật link cho nút phóng to (nếu có trang riêng)
-//                 if (expandBtn) {
-//                     if (data.fullPageUrl) {
-//                         expandBtn.href = data.fullPageUrl;
-//                         expandBtn.style.display = 'flex';
-//                     } else {
-//                         expandBtn.style.display = 'none'; // Ẩn nút nếu chưa có trang riêng
-//                     }
-//                 }
-
-//                 // Kích hoạt hiển thị modal và khóa cuộn nền
-//                 modalOverlay.classList.add('active');
-//                 document.body.style.overflow = 'hidden';
-//             }
-//         });
-//     });
-
-//     // 3. Hàm đóng modal
-//     const closeModal = () => {
-//         modalOverlay.classList.remove('active');
-//         document.body.style.overflow = 'auto'; // Mở lại cuộn nền
-//     };
-
-//     if (closeBtn) {
-//         closeBtn.addEventListener('click', closeModal);
-//     }
-
-//     // Click vào vùng mờ xung quanh modal để đóng
-//     modalOverlay.addEventListener('click', (e) => {
-//         if (e.target === modalOverlay) closeModal();
-//     });
-// });
-
-
-// // ─── TỰ ĐỘNG XỬ LÝ INFINITE LOOP CHO CAROUSEL ───
-//     const track = document.querySelector('.carousel-track');
-//     if (track) {
-//         // Copy toàn bộ thẻ trong track và dán thêm 1 lần nữa vào sau
-//         const cards = Array.from(track.children);
-//         cards.forEach(card => {
-//             const clone = card.cloneNode(true);
-//             track.appendChild(clone);
-//         });
-//     }
-
-
 
 
 
@@ -372,3 +286,286 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+
+
+
+
+/* ══════════════════════════════
+   CERT CAROUSEL — JS
+   Dán vào script.js, bên trong DOMContentLoaded
+   (hoặc để cuối file, sau các hàm khác)
+══════════════════════════════ */
+
+
+/* ════════════════════════════════════════
+   1. DATA — THÊM CERT CỦA BẠN VÀO ĐÂY
+
+   Mỗi object gồm:
+   - title   : Tên cert hiển thị
+   - issuer  : Tổ chức · Năm
+   - img     : Đường dẫn ảnh từ assets/certs/
+   - orient  : 'ls' = landscape | 'pt' = portrait
+               (chỉ ảnh hưởng kích thước thumbnail trong carousel,
+                popup luôn tự vừa với ảnh thật)
+════════════════════════════════════════ */
+const CERTS_DATA = [
+  {
+    title:  'Google AI Essentials',
+    issuer: 'Google / Coursera · 2025',
+    img:    'assets/google-ai-essentials.png',
+    orient: 'ls',
+  },
+  {
+    title:  'City-level Math Olympiad',
+    issuer: 'Ministry of Education · 2026',
+    img:    'assets/FIF.png',
+    orient: 'ls',
+  },
+  // ── Thêm cert mới bên dưới ──
+  // {
+  //   title:  'Tên chứng chỉ',
+  //   issuer: 'Tổ chức · Năm',
+  //   img:    'assets/certs/ten-file.jpg',
+  //   orient: 'ls',  // hoặc 'pt'
+  // },
+];
+
+
+/* ════════════════════════════════════════
+   2. KHỞI TẠO — không cần chỉnh bên dưới
+════════════════════════════════════════ */
+(function initCertCarousel() {
+
+  // Lấy các element cần thiết
+  const track   = document.getElementById('certsTrack');
+  const outer   = document.getElementById('certsOuter');
+  const popup   = document.getElementById('certPopup');
+  const popupIn = document.getElementById('certPopupInner');
+  const popupT  = document.getElementById('certPopupTitle');
+  const popupS  = document.getElementById('certPopupSub');
+
+  // Nếu thiếu element nào thì dừng, tránh crash
+  if (!track || !outer || !popup || !popupIn || !popupT || !popupS) {
+    console.warn('Cert carousel: thiếu element HTML, kiểm tra lại id trong cert-carousel.html');
+    return;
+  }
+
+  /* ── Build từng card ── */
+  function makeCard(cert) {
+    // Khai báo card TRƯỚC khi set dataset
+    const card = document.createElement('div');
+    card.className        = `cert-card-new ${cert.orient}`;
+    card.dataset.title    = cert.title;
+    card.dataset.issuer   = cert.issuer;
+    card.dataset.img      = cert.img;
+    card.dataset.orient   = cert.orient;
+
+    // Ảnh thumbnail (cover — lấp đầy card, được cắt là bình thường)
+    const img = document.createElement('img');
+    img.alt   = cert.title;
+    img.src   = cert.img;
+    img.onerror = function () {
+      this.replaceWith(
+        Object.assign(document.createElement('div'), {
+          className:   'cert-placeholder',
+          textContent: cert.title,
+        })
+      );
+    };
+    card.appendChild(img);
+
+    // Shine layer
+    const shine = document.createElement('div');
+    shine.className = 'cert-shine-layer';
+    card.appendChild(shine);
+
+    // Info bar
+    const info = document.createElement('div');
+    info.className = 'cert-info-bar';
+    info.innerHTML = `<strong>${cert.title}</strong><span>${cert.issuer}</span>`;
+    card.appendChild(info);
+
+    return card;
+  }
+
+  // Render cards vào track
+  CERTS_DATA.forEach(cert => track.appendChild(makeCard(cert)));
+
+  // Clone toàn bộ để loop vô hạn
+  const origCards = Array.from(track.children);
+  origCards.forEach(c => track.appendChild(c.cloneNode(true)));
+
+  /* ── Tilt 3D + Shine theo chuột ── */
+  function attachTilt(card) {
+    card.addEventListener('mousemove', e => {
+      const r  = card.getBoundingClientRect();
+      const x  = (e.clientX - r.left) / r.width;
+      const y  = (e.clientY - r.top)  / r.height;
+      card.style.transform = `perspective(700px) rotateX(${(y - .5) * 15}deg) rotateY(${(x - .5) * -15}deg) scale(1.04)`;
+      const shine = card.querySelector('.cert-shine-layer');
+      if (shine) {
+        shine.style.setProperty('--mx', x * 100 + '%');
+        shine.style.setProperty('--my', y * 100 + '%');
+      }
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(700px) rotateX(0) rotateY(0) scale(1)';
+    });
+  }
+
+  /* ── Popup tự vừa với ảnh thật ──
+     - Không set width/height cứng
+     - Đọc naturalWidth/naturalHeight của ảnh gốc
+     - Scale xuống để vừa màn hình, giữ đúng tỉ lệ
+     - Không bao giờ cắt ảnh
+  ── */
+  function attachPopup(card) {
+    let popupRaf;
+
+    // Kích thước tối đa popup so với màn hình — chỉnh 2 dòng này
+    const MAX_W_RATIO = 0.42;   // tối đa 42% chiều rộng màn hình
+    const MAX_H_RATIO = 0.68;   // tối đa 68% chiều cao màn hình
+
+    card.addEventListener('mouseenter', () => {
+      // Reset popup về trạng thái loading
+      popupIn.innerHTML = '';
+      popup.style.width  = 'auto';
+      popup.style.height = 'auto';
+
+      const pImg    = document.createElement('img');
+      pImg.className = 'cert-popup-img';
+      pImg.alt       = card.dataset.title;
+
+      pImg.onload = function () {
+        // Tính kích thước tối đa
+        const maxW = window.innerWidth  * MAX_W_RATIO;
+        const maxH = window.innerHeight * MAX_H_RATIO;
+
+        // Scale giữ tỉ lệ ảnh gốc
+        const scaleW   = maxW / this.naturalWidth;
+        const scaleH   = maxH / this.naturalHeight;
+        const scale    = Math.min(scaleW, scaleH, 1); // không phóng to hơn ảnh gốc
+
+        const finalW   = Math.round(this.naturalWidth  * scale);
+
+        // Set width cho popup và ảnh, height tự tính (height: auto trong CSS)
+        popup.style.width  = finalW + 'px';
+        pImg.style.width   = '100%';
+
+        popup.classList.add('visible');
+      };
+
+      pImg.onerror = function () {
+        // Fallback nếu ảnh lỗi
+        this.replaceWith(
+          Object.assign(document.createElement('div'), {
+            className:   'cert-popup-placeholder',
+            textContent: card.dataset.title,
+          })
+        );
+        popup.style.width = '280px';
+        popup.classList.add('visible');
+      };
+
+      // Set src SAU khi gắn onload/onerror
+      pImg.src = card.dataset.img;
+      popupIn.appendChild(pImg);
+
+      popupT.textContent = card.dataset.title;
+      popupS.textContent = card.dataset.issuer;
+    });
+
+    card.addEventListener('mousemove', e => {
+      cancelAnimationFrame(popupRaf);
+      popupRaf = requestAnimationFrame(() => {
+        // Đọc kích thước popup thực tế (sau khi ảnh load)
+        const pw     = popup.offsetWidth;
+        const ph     = popup.offsetHeight;
+        const margin = 20;
+
+        let x = e.clientX + 28;
+        let y = e.clientY - ph / 2;
+
+        // Tránh ra ngoài màn hình
+        if (x + pw > window.innerWidth  - margin) x = e.clientX - pw - 28;
+        if (y < margin)                            y = margin;
+        if (y + ph > window.innerHeight - margin)  y = window.innerHeight - ph - margin;
+
+        popup.style.left = x + 'px';
+        popup.style.top  = y + 'px';
+      });
+    });
+
+    card.addEventListener('mouseleave', () => {
+      cancelAnimationFrame(popupRaf);
+      popup.classList.remove('visible');
+    });
+  }
+
+  // Gắn events cho tất cả cards (kể cả clones)
+  document.querySelectorAll('.cert-card-new').forEach(card => {
+    attachTilt(card);
+    attachPopup(card);
+  });
+
+  /* ── Auto-scroll + Drag + Touch ── */
+  const totalW   = origCards.reduce((sum, c) => sum + c.offsetWidth + 17, 0);
+  let offset     = 0;
+  const SPEED    = 0.55;   // px/frame — chỉnh tốc độ cuộn ở đây
+  let isHovering = false;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragBase   = 0;
+  let raf;
+
+  function loop() {
+    if (!isDragging && !isHovering) {
+      offset += SPEED;
+      if (offset >= totalW) offset = 0;
+    }
+    track.style.transform = `translateX(${-offset}px)`;
+    raf = requestAnimationFrame(loop);
+  }
+  loop();
+
+  // Dừng khi hover vào carousel
+  outer.addEventListener('mouseenter', () => isHovering = true);
+  outer.addEventListener('mouseleave', () => isHovering = false);
+
+  // Drag chuột
+  outer.addEventListener('mousedown', e => {
+    isDragging = true;
+    dragStartX = e.clientX;
+    dragBase   = offset;
+    cancelAnimationFrame(raf);
+  });
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    let next = dragBase - (e.clientX - dragStartX);
+    offset = Math.max(0, Math.min(next, totalW - 1));
+    track.style.transform = `translateX(${-offset}px)`;
+  });
+  window.addEventListener('mouseup', () => {
+    if (isDragging) { isDragging = false; loop(); }
+  });
+
+  // Swipe mobile
+  outer.addEventListener('touchstart', e => {
+    isDragging = true;
+    dragStartX = e.touches[0].clientX;
+    dragBase   = offset;
+    cancelAnimationFrame(raf);
+  }, { passive: true });
+  outer.addEventListener('touchmove', e => {
+    if (!isDragging) return;
+    let next = dragBase - (e.touches[0].clientX - dragStartX);
+    offset = Math.max(0, Math.min(next, totalW - 1));
+    track.style.transform = `translateX(${-offset}px)`;
+  }, { passive: true });
+  outer.addEventListener('touchend', () => {
+    if (isDragging) { isDragging = false; loop(); }
+  });
+
+})();

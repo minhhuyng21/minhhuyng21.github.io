@@ -72,11 +72,16 @@
   <div class="hero-wrap" id="hero">
     <div class="hero-left">
       <span class="eyebrow">Computer Engineering · HCMUT 2026</span>
-      <h1>Engineering<br><em>intelligent systems,</em><br>from algorithm<br>to hardware.</h1>
+      <h1>
+        Hi, I'm Huy.<br>
+        Curious about <em>embedded systems,</em><br>
+        robotics, and AI.
+      </h1>
       <p class="hero-sub">
-        Incoming student at HCMUT. I build things across
-        the stack — reinforcement learning agents, embedded firmware,
-        and the tooling in between.
+        <p class="hero-sub">
+          An <strong>incoming freshman</strong> on the path to becoming an engineer. 
+          Driven by <strong>determination</strong> to research, learn, and <strong>make real stuff</strong> at the intersection of code and hardware.
+        </p>
       </p>
       <div class="cta-row">
         <a href="#projects" class="btn-p">View my work &nbsp;→</a>
@@ -99,12 +104,12 @@
       <div>
         <h2 class="section-h">Student, builder,<br>curious about everything.</h2>
         <div class="about-body">
-          <p>I'm a Vietnamese student who just finished high school and is about to start at HCMUT's Computer Engineering program.</p>
-          <p>Outside of tech, I play guitar, piano — jazz harmony is my rabbit hole. I also follow sports science and read about finance and self-development in both Vietnamese and English.</p>
-          <p>I believe the best engineers understand both the silicon and the algorithm. That's the gap I'm working to close.</p>
+          <p>Hi, I'm Huy, a freshman at Ho Chi Minh City University of Technology (HCMUT). My passion for math and technology was sparked during my high school years. I started programming and building my first projects back then, and earning a few small awards along the way gave me the confidence that I was on the right track. I thrive on learning new things and building solutions from scratch, and I always bring full enthusiasm and dedication to every project I undertake.</p>
+          <p>Outside of tech, I believe in cultivating a balanced and multi-dimensional life. I enjoy playing the guitar and piano, which not only nurture my creativity and patience but also teach me how to listen and harmonize with others. I'm also deeply into sports, particularly badminton and football. Whether on the court or the pitch, these activities build my discipline and strategic thinking, while giving me wonderful opportunities to connect with people from all walks of life.</p>
+          <p>I believe the best tech solutions come from a blend of logical algorithms and human connection. As I continue my journey at HCMUT, I'm eager to build things that are not only technically sound but also bring real value to people.</p>
         </div>
       </div>
-      <div class="skills-col">
+      <!-- <div class="skills-col">
         <div><div class="skill-label">Languages</div>
           <div class="skill-tag-group">
             <span class="skill-tag">Python</span><span class="skill-tag">C / C++</span>
@@ -128,7 +133,7 @@
             <span class="skill-tag">HTML / CSS</span>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -136,43 +141,37 @@
 
   
 
-  <!-- ══ SECTION: CERTIFICATES & AWARDS (AUTO-SCROLL) ══ -->
+<!-- ══ SECTION: CERTIFICATES & AWARDS ══ -->
+
+<!-- ══ HTML ══ -->
 <section class="section-wrap" id="achievements">
   <span class="section-ey">Recognitions</span>
   <h2 class="section-h">Certificates & Awards</h2>
-
-  <!-- Container chứa băng chuyền -->
-  <div class="carousel-container">
-    <div class="carousel-track">
-      
-      <div class="cert-card modal-trigger" data-id="cert-1">
-      <div class="cert-header">
-        <span class="cert-icon">🏆</span>
-        <span class="cert-year">2026</span>
-      </div>
-      <h3>City-level Math Olympiad</h3>
-      <p class="cert-issuer">Ministry of Education</p>
-      <span class="cert-tag">Third Prize</span>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="cert-card modal-trigger" data-id="cert-2">
-      <div class="cert-header">
-        <span class="cert-icon">📜</span>
-        <span class="cert-year">2025</span>
-      </div>
-      <h3>Google Data Analytics</h3>
-      <p class="cert-issuer">Google / Coursera</p>
-      <span class="cert-tag">Professional Cert</span>
-    </div>
+  <p class="section-sub">A few things along the way — hover to preview, drag to explore.</p>
+ 
+  <!-- Carousel -->
+  <div class="certs-carousel-outer" id="certsOuter">
+    <div class="certs-carousel-track" id="certsTrack">
+      <!-- Cards được tạo tự động bởi JS bên dưới -->
     </div>
   </div>
-
-  <!-- Nút View All tổng hợp bên dưới -->
-  <div class="view-more-wrap" style="margin-top: 2.5rem; text-align: center;">
-    <a href="achievements.html" class="btn-s">View all credentials & certificates &rarr;</a>
+ 
+  <!-- Footer -->
+  <div class="certs-footer">
+    <div class="certs-drag-hint">⟵ drag to explore ⟶</div>
+    <a href="achievements.html" class="btn-s">View all credentials →</a>
   </div>
 </section>
+ 
+<!-- Popup element (dùng chung, inject vào body) -->
+<div class="cert-popup" id="certPopup">
+  <div id="certPopupInner"></div>
+  <div class="cert-popup-bar">
+    <strong id="certPopupTitle"></strong>
+    <span id="certPopupSub"></span>
+  </div>
+</div>
+ 
 
 
   <!-- ══ PROJECTS ══ -->

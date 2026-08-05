@@ -36,7 +36,7 @@
   --btn-p-color:     #0d1929;
   --contact-hover:   rgba(200,216,234,0.14);
   --timeline-line:   var(--accent);
-  --hero-gradient:   linear-gradient(120deg, #c8d8ea 0%, #ddeaf5 40%, #8faabf 100%);
+  --hero-gradient:   linear-gradient(120deg, #51d916 0%, #5e0925 40%, #5b00cae1 100%);
 }
 
 /* ══════════════════════════════
@@ -293,18 +293,32 @@ nav {
   background: var(--card-b);
   transform: scale(1.08);
 }
-
 /* ══════════════════════════════
-   HERO
+  HERO (TỐI GIẢN & CĂN GIỮA)
 ══════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
+
 .hero-wrap {
   position: relative; z-index: 1;
   min-height: 100vh;
-  display: grid; grid-template-columns: 1fr 1fr;
-  align-items: center; padding-top: var(--nav-h);
+  /* Đổi từ grid 2 cột sang flex để căn giữa toàn bộ */
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  padding-top: var(--nav-h);
   max-width: 1180px; margin: 0 auto;
   padding-left: 3.5rem; padding-right: 3.5rem; gap: 2rem;
 }
+
+/* Đảm bảo container chứa chữ cũng căn giữa các phần tử bên trong */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 .eyebrow {
   display: inline-flex; align-items: center; gap: .45rem;
   border: 1px solid var(--card-b); border-radius: 999px;
@@ -316,31 +330,45 @@ nav {
   content: ''; width: 6px; height: 6px; border-radius: 50%;
   background: var(--accent); flex-shrink: 0;
 }
+
 .hero-left h1 {
   font-size: clamp(2.5rem, 4.8vw, 4rem);
   font-weight: 900; line-height: 1.06; letter-spacing: -.03em;
   color: var(--text); margin-bottom: 1.4rem;
 }
+
+/* TẠO NÉT NGHỆ SĨ Ở ĐÂY */
 .hero-left h1 em {
-  font-style: normal;
+  font-family: 'Playfair Display', serif; /* Font Serif có chân mềm mại */
+  font-style: italic; /* Chữ nghiêng */
+  font-weight: 500;
+  padding: 0 4px; /* Tránh bị cắt mất chữ nghiêng ở một số trình duyệt */
   background: var(--hero-gradient);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 .hero-sub {
   font-size: .97rem; line-height: 1.76; color: var(--sub);
   max-width: 470px; margin-bottom: 2.5rem;
 }
-.cta-row { display: flex; gap: .9rem; flex-wrap: wrap; margin-bottom: 3.8rem; }
+
+/* Thêm justify-content: center để 2 nút nằm giữa */
+.cta-row { 
+  display: flex; gap: .9rem; flex-wrap: wrap; margin-bottom: 3.8rem; 
+  justify-content: center;
+}
+
 .btn-p {
   display: inline-flex; align-items: center; gap: .4rem;
-  background: var(--accent); color: var(--btn-p-color);  /* ✅ Đã fix */
+  background: var(--accent); color: var(--btn-p-color); 
   border: none; border-radius: 5px;
   padding: .74rem 1.55rem; font-size: .88rem; font-weight: 700;
   text-decoration: none; cursor: pointer;
   transition: opacity .2s, transform .15s;
 }
 .btn-p:hover { opacity: .88; transform: translateY(-1px); }
+
 .btn-s {
   display: inline-flex; align-items: center;
   background: transparent; color: var(--text);
@@ -350,15 +378,20 @@ nav {
   transition: background .2s, transform .15s;
 }
 .btn-s:hover { background: var(--tag-bg); transform: translateY(-1px); }
+
+/* Thêm justify-content: center để các con số nằm giữa */
 .stats {
   display: flex; gap: 2.8rem;
   border-top: 1px solid var(--border); padding-top: 1.7rem;
+  justify-content: center;
 }
 .stat-n { font-size: 1.5rem; font-weight: 900; color: var(--text); line-height: 1; margin-bottom: .2rem; }
 .stat-l { font-size: .74rem; color: var(--muted); font-weight: 500; }
 
+/* NẾU VẪN MUỐN GIỮ HÌNH ẢNH SAU KHI CĂN GIỮA TEXT */
 .hero-right {
   display: flex; align-items: center; justify-content: center;
+  margin-top: 2rem;
 }
 .hero-right img {
   width: 100%; max-width: 460px;
@@ -366,7 +399,6 @@ nav {
   filter: brightness(.9) contrast(1.05);
   pointer-events: none; user-select: none;
 }
-
 /* ══════════════════════════════
    SECTIONS
 ══════════════════════════════ */
@@ -394,7 +426,7 @@ nav {
 
 /* ── About ── */
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; }
-.about-body { font-size: .91rem; line-height: 1.8; color: var(--sub); }
+.about-body { font-size: .91rem; line-height: 1.8; color: var(--sub);}
 .about-body p+p { margin-top: .9rem; }
 .skills-col { display: flex; flex-direction: column; gap: 1.1rem; }
 .skill-label { font-size: .67rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); margin-bottom: .32rem; }
@@ -635,4 +667,195 @@ footer {
 @media(prefers-reduced-motion: reduce) {
   .aurora-blob { animation: none !important; }
   * { transition: none !important; }
+}
+
+
+
+
+
+
+
+/* ── Carousel wrapper ── */
+.certs-carousel-outer {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+  cursor: grab;
+  user-select: none;
+  padding: .5rem 0 1rem;
+}
+.certs-carousel-outer:active {
+  cursor: grabbing;
+}
+ 
+.certs-carousel-track {
+  display: flex;
+  gap: 1.1rem;
+  width: max-content;
+  will-change: transform;
+}
+ 
+/* ── Cert card ── */
+.cert-card-new {
+  flex-shrink: 0;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--card);
+  transform-style: preserve-3d;
+  transition: box-shadow .3s ease, transform .25s ease;
+  cursor: pointer;
+}
+.cert-card-new.ls { width: 300px; height: 188px; }
+.cert-card-new.pt { width: 168px; height: 224px; }
+ 
+/* Ảnh bên trong card thumbnail — luôn cover để lấp đầy card */
+.cert-card-new img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* ✅ Card thumbnail: cover là đúng */
+  display: block;
+  pointer-events: none;
+  transition: filter .25s ease;
+}
+ 
+/* Fallback placeholder */
+.cert-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .72rem;
+  font-family: monospace;
+  color: var(--muted);
+  background: var(--card);
+  text-align: center;
+  padding: 1rem;
+  line-height: 1.5;
+}
+ 
+/* Shine overlay */
+.cert-shine-layer {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255,255,255,.16) 0%,
+    transparent 62%
+  );
+  opacity: 0;
+  transition: opacity .2s ease;
+  pointer-events: none;
+  border-radius: 10px;
+}
+ 
+/* Info bar trượt lên từ dưới */
+.cert-info-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.78) 0%, transparent 100%);
+  padding: .65rem .85rem .75rem;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity .25s ease, transform .25s ease;
+  pointer-events: none;
+}
+.cert-info-bar strong {
+  display: block;
+  font-size: .75rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+.cert-info-bar span {
+  font-size: .68rem;
+  color: rgba(255,255,255,.72);
+}
+ 
+/* Hover states cho card */
+.cert-card-new:hover {
+  box-shadow: 0 20px 44px var(--card-hover-shadow, rgba(0,0,0,.38));
+}
+.cert-card-new:hover img          { filter: brightness(1.08); }
+.cert-card-new:hover .cert-shine-layer { opacity: 1; }
+.cert-card-new:hover .cert-info-bar    { opacity: 1; transform: translateY(0); }
+ 
+/* ── Popup ── */
+.cert-popup {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transform: scale(.86) translateY(12px);
+  transition: opacity .22s ease, transform .22s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 32px 64px rgba(0,0,0,.55), 0 0 0 .5px rgba(255,255,255,.1);
+ 
+  /* Quan trọng: để popup tự co theo nội dung */
+  width: auto;
+  height: auto;
+}
+.cert-popup.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+ 
+/* Ảnh trong popup — contain để không cắt */
+.cert-popup-img {
+  display: block;
+  width: 100%;        /* width được set bởi JS */
+  height: auto;       /* ✅ height tự tính theo tỉ lệ ảnh — không bao giờ cắt */
+  object-fit: contain;
+  background: var(--bg);
+}
+ 
+/* Fallback popup */
+.cert-popup-placeholder {
+  width: 100%;
+  min-height: 200px;
+  background: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .8rem;
+  color: var(--muted);
+  font-family: monospace;
+  padding: 2rem;
+}
+ 
+/* Info bar popup */
+.cert-popup-bar {
+  background: var(--bg);
+  padding: .75rem 1rem .85rem;
+  border-top: 1px solid var(--border);
+}
+.cert-popup-bar strong {
+  display: block;
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.cert-popup-bar span {
+  font-size: .75rem;
+  color: var(--sub);
+}
+ 
+/* ── Footer ── */
+.certs-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.6rem;
+}
+.certs-drag-hint {
+  font-size: .72rem;
+  color: var(--muted);
+  font-family: monospace;
+  opacity: .7;
 }
