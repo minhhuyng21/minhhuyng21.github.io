@@ -37,6 +37,8 @@
   --contact-hover:   rgba(200,216,234,0.14);
   --timeline-line:   var(--accent);
   --hero-gradient:   linear-gradient(120deg, #51d916 0%, #5e0925 40%, #5b00cae1 100%);
+  --hl-bg:   rgba(96, 165, 250, 0.18); /* Nền xanh lam mờ nhẹ */
+  --hl-text: #93c5fd;
 }
 
 /* ══════════════════════════════
@@ -77,6 +79,8 @@
   --contact-hover:   rgba(29,78,216,0.10);
   --timeline-line:   var(--accent);
   --hero-gradient:   linear-gradient(120deg, #1d4ed8 0%, #3b6fd4 40%, #0d2550 100%);
+  --hl-bg:   rgba(29, 78, 216, 0.12); /* Nền xanh royal trong suốt */
+  --hl-text: #1e40af;
 }
 
 /* ══════════════════════════════
@@ -111,6 +115,8 @@
   --contact-hover:   rgba(56,189,248,0.10);
   --timeline-line:   var(--accent);
   --hero-gradient:   linear-gradient(120deg, #38bdf8 0%, #7dd3fc 40%, #94a3b8 100%);
+  --hl-bg:   rgba(56, 189, 248, 0.15); /* Nền cyan nhạt */
+  --hl-text: #38bdf8;
 }
 
 /* ══════════════════════════════
@@ -145,7 +151,14 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
-
+.highlight {
+  background-color: var(--hl-bg);
+  color: var(--hl-text);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
 /* ══════════════════════════════
    AURORA BLOB BACKGROUND
 ══════════════════════════════ */

@@ -315,7 +315,7 @@ const CERTS_DATA = [
     title:  'Google AI Essentials',
     issuer: 'Google / Coursera · 2025',
     img:    'assets/google-ai-essentials.png',
-    orient: 'ls',
+    orient: 'pt',
   },
   {
     title:  'City-level Math Olympiad',
