@@ -8,7 +8,7 @@
    1. COLORFUL MODE (Mặc định)
 ══════════════════════════════ */
 :root, [data-theme="colorful"] {
-  --bg:          #18253d;
+  --bg:          #0b1424;;
   --blob-dark:   #0b1525;
   --blob-mid:    #223355;
   --blob-silver: #8faabf;
@@ -57,7 +57,7 @@
   --sub:    #4a637d;
   --muted:  #7a96b0;
 
-  --accent: #1d4ed8;
+  --accent: #030391;
   --navy:   #0d2550;
   --blue:   #1a3f80;
 
@@ -162,93 +162,306 @@ body {
 /* ══════════════════════════════
    AURORA BLOB BACKGROUND
 ══════════════════════════════ */
+ /* ══════════════════════════════════════════════
+   SOFT DEEP-BLUE AURORA
+   Light & calm — no dark fade
+   ══════════════════════════════════════════════ */
+
 .aurora {
-  position: fixed; inset: 0; z-index: 0;
-  overflow: hidden;
-  background: var(--bg);
-  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+
+    background: #0b1424;
 }
 
-[data-theme="light"] .aurora,
-[data-theme="dark"] .aurora {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none;
+
+/* Soft overall blue atmosphere */
+.aurora::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            ellipse 75% 55% at 50% 0%,
+            rgba(37, 99, 235, 0.13),
+            transparent 70%
+        );
+
+    pointer-events: none;
 }
+
+
+/* Very subtle vignette — NOT black */
+.aurora::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 35%,
+            rgba(5, 15, 30, 0.08) 100%
+        );
+
+    pointer-events: none;
+}
+
+
+/* ──────────────────────────────────────────────
+   BASE
+   ────────────────────────────────────────────── */
 
 .aurora-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 1;
-  mix-blend-mode: screen;
-  will-change: transform, opacity;
+    position: absolute;
+    border-radius: 50%;
+
+    filter: blur(85px);
+
+    mix-blend-mode: screen;
+
+    will-change: transform, opacity;
+
+    pointer-events: none;
 }
+
+
+/* ──────────────────────────────────────────────
+   BLUE — TOP LEFT
+   ────────────────────────────────────────────── */
 
 .b1 {
-  width: 65vw; height: 65vw;
-  top: -15vw; left: -10vw;
-  background: radial-gradient(circle at center, #2a4070 0%, #1a2e52 40%, transparent 70%);
-  animation: drift1 14s ease-in-out infinite alternate;
+    width: 62vw;
+    height: 58vw;
+
+    top: -20vw;
+    left: -12vw;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(37, 99, 235, 0.38) 0%,
+            rgba(37, 99, 235, 0.20) 35%,
+            transparent 70%
+        );
+
+    opacity: 0.85;
+
+    animation:
+        softAurora1 22s
+        ease-in-out
+        infinite alternate;
 }
+
+
+/* ──────────────────────────────────────────────
+   CYAN — TOP RIGHT
+   ────────────────────────────────────────────── */
+
 .b2 {
-  width: 50vw; height: 50vw;
-  top: 5vw; right: 5vw;
-  background: radial-gradient(circle at center, #0d1929 0%, #111f38 35%, transparent 65%);
-  animation: drift2 18s ease-in-out infinite alternate;
-  mix-blend-mode: multiply;
-  opacity: .85;
+    width: 48vw;
+    height: 48vw;
+
+    top: -5vw;
+    right: -5vw;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(34, 211, 238, 0.28) 0%,
+            rgba(14, 165, 233, 0.16) 38%,
+            transparent 72%
+        );
+
+    opacity: 0.8;
+
+    animation:
+        softAurora2 27s
+        ease-in-out
+        infinite alternate;
+
+    animation-delay: -7s;
 }
+
+
+/* ──────────────────────────────────────────────
+   BLUE / INDIGO — RIGHT CENTER
+   ────────────────────────────────────────────── */
+
 .b3 {
-  width: 70vw; height: 55vw;
-  bottom: -20vw; right: -15vw;
-  background: radial-gradient(circle at center, #8faabf 0%, #c8d8ea 20%, #4a6a88 50%, transparent 70%);
-  animation: drift3 22s ease-in-out infinite alternate;
-  opacity: .18;
+    width: 58vw;
+    height: 50vw;
+
+    top: 25vh;
+    right: -20vw;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(59, 130, 246, 0.22) 0%,
+            rgba(99, 102, 241, 0.13) 38%,
+            transparent 72%
+        );
+
+    opacity: 0.65;
+
+    animation:
+        softAurora3 31s
+        ease-in-out
+        infinite alternate;
+
+    animation-delay: -13s;
 }
+
+
+/* ──────────────────────────────────────────────
+   DEEP BLUE — BOTTOM LEFT
+   ────────────────────────────────────────────── */
+
 .b4 {
-  width: 40vw; height: 40vw;
-  bottom: 10vw; left: -5vw;
-  background: radial-gradient(circle at center, #0b1525 0%, #152235 40%, transparent 68%);
-  animation: drift4 16s ease-in-out infinite alternate;
-  mix-blend-mode: multiply;
-  opacity: .9;
+    width: 55vw;
+    height: 50vw;
+
+    bottom: -22vw;
+    left: -15vw;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(30, 64, 175, 0.25) 0%,
+            rgba(37, 99, 235, 0.12) 42%,
+            transparent 72%
+        );
+
+    opacity: 0.7;
+
+    animation:
+        softAurora4 29s
+        ease-in-out
+        infinite alternate;
+
+    animation-delay: -16s;
 }
+
+
+/* ──────────────────────────────────────────────
+   CENTER BLUE / CYAN
+   ────────────────────────────────────────────── */
+
 .b5 {
-  width: 55vw; height: 55vw;
-  top: 35vh; left: 20vw;
-  background: radial-gradient(circle at center, #1e3560 0%, #162847 45%, transparent 70%);
-  animation: drift5 20s ease-in-out infinite alternate;
-  opacity: .7;
+    width: 55vw;
+    height: 45vw;
+
+    top: 30vh;
+    left: 20vw;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(14, 165, 233, 0.16) 0%,
+            rgba(37, 99, 235, 0.12) 40%,
+            transparent 72%
+        );
+
+    opacity: 0.65;
+
+    animation:
+        softAurora5 35s
+        ease-in-out
+        infinite alternate;
+
+    animation-delay: -20s;
 }
 
-@keyframes drift1 {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(6vw, 8vh) scale(1.12); }
-}
-@keyframes drift2 {
-  from { transform: translate(0, 0) scale(1.05); }
-  to   { transform: translate(-8vw, 10vh) scale(.9); }
-}
-@keyframes drift3 {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(-10vw, -12vh) scale(1.18); }
-}
-@keyframes drift4 {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(8vw, -6vh) scale(1.1); }
-}
-@keyframes drift5 {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(5vw, 10vh) scale(.88); }
+
+/* ══════════════════════════════════════════════
+   SMOOTH MOTION
+   ══════════════════════════════════════════════ */
+
+@keyframes softAurora1 {
+    0% {
+        transform: translate3d(-2vw, -1vh, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(5vw, 4vh, 0) scale(1.08);
+    }
+
+    100% {
+        transform: translate3d(11vw, 7vh, 0) scale(1.14);
+    }
 }
 
-.aurora::after {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(10,16,30,.45) 100%);
-  pointer-events: none;
+
+@keyframes softAurora2 {
+    0% {
+        transform: translate3d(2vw, 0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(-5vw, 6vh, 0) scale(1.09);
+    }
+
+    100% {
+        transform: translate3d(-10vw, 10vh, 0) scale(0.96);
+    }
 }
 
+
+@keyframes softAurora3 {
+    0% {
+        transform: translate3d(0, 2vh, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(-5vw, -3vh, 0) scale(1.07);
+    }
+
+    100% {
+        transform: translate3d(-10vw, -7vh, 0) scale(1.12);
+    }
+}
+
+
+@keyframes softAurora4 {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(6vw, -3vh, 0) scale(1.06);
+    }
+
+    100% {
+        transform: translate3d(12vw, -6vh, 0) scale(1.12);
+    }
+}
+
+
+@keyframes softAurora5 {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(5vw, 5vh, 0) scale(0.96);
+    }
+
+    100% {
+        transform: translate3d(-6vw, 9vh, 0) scale(1.08);
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    .aurora-blob {
+        animation: none !important;
+    }
+}
 /* ══════════════════════════════
    NAV
 ══════════════════════════════ */
@@ -590,6 +803,147 @@ footer {
 }
 
 /* ══════════════════════════════
+   PROJECT DETAIL CONTENT — README style
+   (dùng chung cho Modal & trang project-x.html)
+══════════════════════════════ */
+
+
+/* Badge pills (thay cho row tags rời rạc) */
+.pd-badges { display: flex; flex-wrap: wrap; gap: .45rem; margin: 0 0 1.6rem; }
+.pd-badge {
+  display: inline-flex; align-items: center; gap: .35rem;
+  font-size: .72rem; font-weight: 600; letter-spacing: .01em;
+  background: var(--tag-bg); color: var(--sub);
+  border: 1px solid var(--card-b); border-radius: 5px;
+  padding: .3rem .65rem;
+}
+
+/* Section headings kiểu README: "## Heading" + gạch chân */
+.pd-h3 {
+  display: flex; align-items: baseline; gap: .5rem;
+  font-size: .98rem; font-weight: 700; color: var(--text);
+  margin: 1.9rem 0 .9rem; padding-bottom: .55rem;
+  border-bottom: 1px solid var(--border);
+}
+.pd-h3:first-child { margin-top: 0; }
+.pd-h3::before {
+  content: "##"; font-family: 'JetBrains Mono', monospace;
+  font-size: .82rem; font-weight: 600; color: var(--muted);
+}
+
+.pd-lede { font-size: .93rem; line-height: 1.75; color: var(--sub); margin-bottom: 0; }
+
+/* Bullet list */
+.pd-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .75rem; }
+.pd-list li { position: relative; padding-left: 1.2rem; font-size: .88rem; line-height: 1.7; color: var(--sub); }
+.pd-list li::before {
+  content: ""; position: absolute; left: 0; top: .6rem;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
+}
+.pd-list code, .pd-lede code, .pd-note code {
+  font-family: 'JetBrains Mono', monospace; font-size: .82em;
+  background: var(--tag-bg); color: var(--accent);
+  padding: .1rem .35rem; border-radius: 4px;
+}
+
+/* Stat strip */
+.pd-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--card-b);
+  border: 1px solid var(--card-b); border-radius: 10px;
+  overflow: hidden; margin: 0 0 1.7rem;
+}
+.pd-stat { background: var(--card); padding: .95rem .8rem; text-align: center; }
+.pd-stat b { display: block; font-size: 1.25rem; font-weight: 800; color: var(--accent); line-height: 1.2; }
+.pd-stat span { font-size: .7rem; color: var(--muted); }
+
+/* Tech-stack table (README-style) */
+.pd-table { width: 100%; border-collapse: collapse; font-size: .84rem; margin-bottom: .3rem; }
+.pd-table th, .pd-table td {
+  text-align: left; padding: .6rem .8rem;
+  border: 1px solid var(--border);
+}
+.pd-table th {
+  background: var(--tag-bg); color: var(--text);
+  font-weight: 700; font-size: .74rem; letter-spacing: .04em; text-transform: uppercase;
+}
+.pd-table td { color: var(--sub); }
+.pd-table td:first-child { color: var(--text); font-weight: 600; white-space: nowrap; }
+
+/* Blockquote / note callout */
+.pd-note {
+  border-left: 3px solid var(--accent);
+  background: var(--tag-bg);
+  padding: .8rem 1rem;
+  border-radius: 0 6px 6px 0;
+  font-size: .85rem; line-height: 1.65; color: var(--sub);
+  margin: 1.3rem 0;
+}
+.pd-note strong { color: var(--text); }
+
+.pd-cta { margin-top: 1.8rem; display: flex; gap: .7rem; flex-wrap: wrap; }
+
+@media (max-width: 480px) {
+  .pd-stats { grid-template-columns: 1fr; }
+  .pd-table { font-size: .78rem; }
+}
+
+/* ══════════════════════════════
+   PROJECT DETAIL PAGE (project1.html, ...)
+   chỉ cần thêm link "back" — phần còn lại tái dùng
+   section-wrap / section-ey / section-h / section-sub sẵn có
+══════════════════════════════ */
+.pd-back {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .8rem; color: var(--sub); text-decoration: none;
+  margin-bottom: 1.6rem;
+}
+.pd-back:hover { color: var(--accent); }
+
+/* ══════════════════════════════
+   ICON DẠNG ẢNH (thay cho emoji)
+   Quan trọng: ép kích thước CONTAINER trước, ảnh bên trong chỉ
+   object-fit theo container — nếu không set width/height cho
+   container, ảnh sẽ hiện theo kích thước gốc (vd 1920×1920px).
+══════════════════════════════ */
+.proj-icon img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  border-radius: 5px;
+  display: block;
+}
+
+/* .modal-icon gốc chỉ có font-size (vì trước là emoji) —
+   ép lại thành khung cố định khi chứa ảnh */
+.modal-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.modal-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+  display: block;
+}
+
+.pd-icon {
+  width: 44px; height: 44px; border-radius: 8px;
+  background: var(--tag-bg); border: 1px solid var(--card-b);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1rem; overflow: hidden;
+}
+.pd-icon img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ══════════════════════════════
    CAROUSEL (CERTS)
 ══════════════════════════════ */
 .carousel-container {
@@ -871,4 +1225,22 @@ footer {
   color: var(--muted);
   font-family: monospace;
   opacity: .7;
+}
+
+
+
+
+
+
+[data-theme="light"] .aurora,
+[data-theme="dark"] .aurora {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+[data-theme="colorful"] .aurora {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: none;
 }

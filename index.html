@@ -104,12 +104,12 @@
       <div>
         <h2 class="section-h">Student, builder,<br>curious about everything.</h2>
         <div class="about-body">
-          <p>Hi, I'm Huy, a freshman at Ho Chi Minh City University of Technology (HCMUT). My passion for math and technology was sparked during my high school years. I started programming and building my first projects back then, and earning a few small awards along the way gave me the confidence that I was on the right track. I thrive on learning new things and building solutions from scratch, and I always bring full enthusiasm and dedication to every project I undertake.</p>
-          <p>Outside of tech, I believe in cultivating a balanced and multi-dimensional life. I enjoy playing the <span class="highlight">guitar and piano</span>, which not only nurture my creativity and patience but also teach me how to listen and harmonize with others. I'm also deeply into sports, particularly badminton and football. Whether on the court or the pitch, these activities build my discipline and strategic thinking, while giving me wonderful opportunities to connect with people from all walks of life.</p>
-          <p>I believe the best tech solutions come from a blend of logical algorithms and human connection. As I continue my journey at HCMUT, I'm eager to build things that are not only technically sound but also bring real value to people.</p>
+          <p>Hi, I'm Huy, a freshman at Ho Chi Minh City University of Technology (HCMUT). My passion for <span class="highlight">math and technology</span> was sparked during my high school years. I started programming and building my first projects back then, and earning a few small awards along the way gave me the confidence that I was on the right track. I thrive on <span class="highlight"> learning new things </span> and <span class="highlight">building solutions from scratch</span> , and I always bring full<span class="highlight">enthusiasm </span> and <span class="highlight">dedication</span> to every project I undertake.</p>
+          <p><span class="highlight">Outside of tech</span>, I believe in cultivating a balanced and multi-dimensional life. I enjoy playing the <span class="highlight">guitar and piano</span>, which not only nurture my creativity and patience but also teach me how to listen and harmonize with others. I'm also deeply into sports, particularly <span class="highlight">badminton and football</span> . Whether on the court or the pitch, these activities build my discipline and strategic thinking, while giving me wonderful opportunities to <span class="highlight"> connect with people  </span>from all walks of life.</p>
+          <p>I believe the best tech solutions come from a blend of <span class="highlight">logical algorithms</span> and <span class="highlight">human connection</span>. As I continue my journey at HCMUT, I'm eager to build things that are not only technically sound but also bring <span class="highlight"> real value </span> real value to people.</p>
         </div>
       </div>
-      <!-- <div class="skills-col">
+      <div class="skills-col">
         <div><div class="skill-label">Languages</div>
           <div class="skill-tag-group">
             <span class="skill-tag">Python</span><span class="skill-tag">C / C++</span>
@@ -133,7 +133,7 @@
             <span class="skill-tag">HTML / CSS</span>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 
@@ -141,37 +141,7 @@
 
   
 
-<!-- ══ SECTION: CERTIFICATES & AWARDS ══ -->
 
-<!-- ══ HTML ══ -->
-<section class="section-wrap" id="achievements">
-  <span class="section-ey">Recognitions</span>
-  <h2 class="section-h">Certificates & Awards</h2>
-  <p class="section-sub">A few things along the way — hover to preview, drag to explore.</p>
- 
-  <!-- Carousel -->
-  <div class="certs-carousel-outer" id="certsOuter">
-    <div class="certs-carousel-track" id="certsTrack">
-      <!-- Cards được tạo tự động bởi JS bên dưới -->
-    </div>
-  </div>
- 
-  <!-- Footer -->
-  <div class="certs-footer">
-    <div class="certs-drag-hint">⟵ drag to explore ⟶</div>
-    <a href="achievements.html" class="btn-s">View all credentials →</a>
-  </div>
-</section>
- 
-<!-- Popup element (dùng chung, inject vào body) -->
-<div class="cert-popup" id="certPopup">
-  <div id="certPopupInner"></div>
-  <div class="cert-popup-bar">
-    <strong id="certPopupTitle"></strong>
-    <span id="certPopupSub"></span>
-  </div>
-</div>
- 
 
 
   <!-- ══ PROJECTS ══ -->
@@ -182,13 +152,12 @@
   
   <div class="projects-grid">
     <!-- Card 1: Thêm modal-trigger và data-id="project-1" -->
-    <div class="proj-card modal-trigger" data-id="project-1" >
-      <div class="proj-icon">🤖</div>
-      <h3>RL Grid Navigation Agent</h3>
-      <p>Reinforcement learning agent navigating randomized grid maps...</p>
+    <div class="proj-card modal-trigger" data-id="project-aic" >
+      <div class="proj-icon"><img src="assets/aic.png" alt="AI Challenge"></div>
+      <h3>Multimodal Video Retrieval system</h3>
+      <p>AI Challenge – High School Category B, Youth Science and Technology Development Center, HCMC</p>
       <div class="proj-footer">
-        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">RL</span><span class="proj-tag">BFS/DFS</span></div>
-        <a href="#" class="proj-link" onclick="event.stopPropagation();">GitHub ↗</a>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">FIFTYONE</span><span class="proj-tag">Gradio</span></div>
       </div>
     </div>
 
@@ -222,7 +191,7 @@
 
 <hr class="section-div">
 
-< <!-- ══ MODAL (CỬA SỔ POPUP ẨN) ══ -->
+<!-- ══ MODAL (CỬA SỔ POPUP ẨN) ══ -->
   <div class="modal-overlay" id="projectModal">
     <div class="modal-content">
       
@@ -253,6 +222,41 @@
     </div>
   </div>
 
+
+  <!-- ══ SECTION: CERTIFICATES & AWARDS ══ -->
+
+  <!-- ══ HTML ══ -->
+  <section class="section-wrap" id="achievements">
+    <span class="section-ey">Recognitions</span>
+    <h2 class="section-h">Certificates & Awards</h2>
+    <p class="section-sub">A few things along the way — hover to preview, drag to explore.</p>
+  
+    <!-- Carousel -->
+    <div class="certs-carousel-outer" id="certsOuter">
+      <div class="certs-carousel-track" id="certsTrack">
+        <!-- Cards được tạo tự động bởi JS bên dưới -->
+      </div>
+    </div>
+  
+    <!-- Footer
+    <div class="certs-footer">
+      <div class="certs-drag-hint">⟵ drag to explore ⟶</div>
+      <a href="achievements.html" class="btn-s">View all credentials →</a>
+    </div> -->
+  </section>
+  
+  <!-- Popup element (dùng chung, inject vào body) -->
+  <div class="cert-popup" id="certPopup">
+    <div id="certPopupInner"></div>
+    <div class="cert-popup-bar">
+      <strong id="certPopupTitle"></strong>
+      <span id="certPopupSub"></span>
+    </div>
+  </div>
+ 
+
+
+  <hr class="section-div">
   <!-- ══ EXPERIENCE ══ -->
   <div class="section-wrap" id="experience">
     <span class="section-ey">Timeline</span>

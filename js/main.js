@@ -12,24 +12,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // 1. Kho dữ liệu chi tiết của các projects
 const projectsData = {
-    "project-1": {
-        icon: "🤖",
-        title: "RL Grid Navigation Agent",
-        tags: ["Python", "Reinforcement Learning", "Q-Learning", "PyTorch"],
-        fullPageUrl: "project1.html", // Link dẫn sang trang chi tiết riêng
-        content: `
-            <p><strong>Overview:</strong> This project focuses on building a reinforcement learning agent capable of navigating through a randomized, obstacle-filled grid to reach a target destination.</p>
-            <br>
-            <p><strong>Technical Details:</strong></p>
-            <ul>
-                <li>Implemented Q-Learning algorithm from scratch.</li>
-                <li>Built a custom map generator using DFS/BFS algorithms to ensure valid paths always exist.</li>
-                <li>Designed a JSON-based reward system to easily tweak penalties for hitting obstacles vs. reaching the goal.</li>
-            </ul>
-            <br>
-            <a href="#" class="btn-p">View on GitHub</a>
-        `
-    },
+    // ── Thay nguyên object "project-1" trong projectsData (main.js) bằng bản này ──
+// Khối HTML trong `content` chính là khối được dùng lại y hệt trong project1.html
+// (chỉ khác: project1.html có thêm nav/eyebrow/title/footer bao quanh nó).
+
+    // ── Thay nguyên object "project-1" trong projectsData (main.js) bằng bản này ──
+// Khối HTML trong `content` được dùng lại y hệt trong project1.html
+
+"project-aic": {
+    icon: '<img src="assets/aic.png">',
+    title: "Multimodal Video Retrieval System",
+    tags: ["Python", "FiftyOne", "Gradio", "HuggingFace", "FAISS"],
+    fullPageUrl: "project_aic.html",
+    content: `
+        <p class="pd-lede">A search engine over a 300GB corpus of news and event footage — find the right frame by describing what's on screen, what's written on it, or what was said.</p>
+
+        <div class="pd-stats">
+          <div class="pd-stat"><b>300GB</b><span>frame corpus</span></div>
+          <div class="pd-stat"><b>&lt;1s</b><span>query latency</span></div>
+          <div class="pd-stat"><b>4</b><span>vision encoders</span></div>
+        </div>
+
+        <div class="pd-h3">Overview</div>
+        <p class="pd-lede">News and event footage carries information in three places at once: what's visually happening, what text is on screen, and what's being said. This system indexes all three, so a single query — typed or implied — can pull the right frame out of hundreds of thousands of candidates in under a second.</p>
+
+        <div class="pd-h3">Technical Details</div>
+        <ul class="pd-list">
+            <li>Designed a multimodal text-to-image retrieval system over a 300GB frame corpus (news/event videos) using <code>SigLIP2</code>, <code>CLIP</code>, <code>FG-CLIP</code>, and <code>LAION-CLIP</code> as visual feature extractors, with <code>FAISS</code> for approximate nearest-neighbor search.</li>
+            <li>Achieved sub-second query latency by extracting embeddings across distributed GPU resources (remote GPU servers via SSH and Kaggle GPU), maximizing throughput without dedicated infrastructure.</li>
+            <li>Expanded retrieval coverage with a <code>PaddleOCR</code> pipeline to index on-screen text in frames, enabling accurate keyword-based search across the full dataset.</li>
+            <li>Added audio query support by transcribing video content via YouTube subtitle extraction and <code>Whisper</code>, enabling retrieval by spoken content.</li>
+        </ul>
+
+        <div class="pd-h3">Tech Stack</div>
+        <table class="pd-table">
+          <tr><th>Layer</th><th>Tools</th></tr>
+          <tr><td>Vision encoders</td><td>SigLIP2, CLIP, FG-CLIP, LAION-CLIP</td></tr>
+          <tr><td>Retrieval index</td><td>FAISS (approximate nearest-neighbor)</td></tr>
+          <tr><td>Text extraction</td><td>PaddleOCR</td></tr>
+          <tr><td>Audio transcription</td><td>Whisper, YouTube subtitles</td></tr>
+          <tr><td>Interface / tooling</td><td>Gradio, FiftyOne, HuggingFace</td></tr>
+          <tr><td>Compute</td><td>Remote GPU via SSH, Kaggle GPU</td></tr>
+        </table>
+
+        <div class="pd-note"><strong>Note:</strong> No dedicated infrastructure was used — embedding extraction was distributed across free/remote GPU resources, which meant designing the pipeline to checkpoint and resume across interruptible sessions.</div>
+
+        <div class="pd-cta"><a href="#" class="btn-p">View on GitHub</a></div>
+    `
+},
     "project-2": {
         icon: "🕷️",
         title: "Exam Score Web Scraper",
@@ -109,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (data) {
                 // Điền data vào HTML một cách cẩn thận (nếu thẻ tồn tại mới điền)
-                if (modalIcon) modalIcon.textContent = data.icon || "🏆";
+                if (modalIcon) modalIcon.innerHTML = data.icon || "🏆";;
                 if (modalTitle) modalTitle.textContent = data.title || "";
                 if (modalDesc) modalDesc.innerHTML = data.content || "";
                 
@@ -313,15 +343,45 @@ document.addEventListener("DOMContentLoaded", () => {
 const CERTS_DATA = [
   {
     title:  'Google AI Essentials',
-    issuer: 'Google / Coursera · 2025',
-    img:    'assets/google-ai-essentials.png',
-    orient: 'pt',
+    issuer: 'Google / Coursera · 2024',
+    img:    'assets/google.png',
+    orient: 'ls',
   },
   {
     title:  'City-level Math Olympiad',
     issuer: 'Ministry of Education · 2026',
     img:    'assets/FIF.png',
     orient: 'ls',
+  },
+  {
+    title:  'Academic Ielts',
+    issuer: 'British Council',
+    img:    'assets/ielts.png',
+    orient: 'pt',
+  },
+  {
+    title:  'MODULE 1: FOUNDATION IN DEEP LEARNING, MACHINE LEARNING, COMPUTER VISION',
+    issuer: 'New Turing Institute & PTNK Science Community',
+    img:    'assets/prise.png',
+    orient: 'ls',
+  },
+  {
+    title:  'Third-Prize: City-level Excellent Student Competition in Mathematics (Academic Year 2025-2026)',
+    issuer: 'Ho Chi Minh City Level',
+    img:    'assets/math.png',
+    orient: 'pt',
+  },  
+  {
+    title:  'Third Prize – Systems Software, Ho Chi Minh City High School Science and Engineering Fair (2024–2025)',
+    issuer: 'Ho Chi Minh City Level',
+    img:    'assets/khkt.png',
+    orient: 'pt',
+  },
+  {
+    title:  'Potential Award — AI Challenge (High School Category B) ',
+    issuer: 'Youth Science and Technology Development Center, Ho Chi Minh City',
+    img:    'assets/aic_2025.png',
+    orient: 'pt',
   },
   // ── Thêm cert mới bên dưới ──
   // {

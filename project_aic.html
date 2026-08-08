@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multimodal Video Retrieval System · Nguyen Minh Huy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- ══ AURORA BACKGROUND ══ -->
+  <div class="aurora" aria-hidden="true">
+    <div class="aurora-blob b1"></div>
+    <div class="aurora-blob b2"></div>
+    <div class="aurora-blob b3"></div>
+    <div class="aurora-blob b4"></div>
+    <div class="aurora-blob b5"></div>
+  </div>
+
+  <!-- ── NAV (giống hệt index.html) ── -->
+  <nav>
+    <a href="index.html#hero" class="nav-logo">Nguyen Minh Huy</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button id="langToggle" class="nav-icon-btn" title="Change Language">
+        <div id="google_translate_element" style="display: none;"></div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path>
+        </svg>
+      </button>
+      <button id="themeToggle" class="nav-icon-btn" title="Toggle Theme">
+        <svg id="icon-colorful" style="display: none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+          <path d="M5 3v4M3 5h4M19 3v4M17 5h4"/>
+        </svg>
+        <svg id="icon-light" style="display: none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
+        </svg>
+        <svg id="icon-dark" style="display: none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+      </button>
+      <a href="mailto:minhhuy210108@gmail.com" class="nav-cta">Get in touch</a>
+    </div>
+  </nav>
+  <!-- ══ PROJECT DETAIL — dùng đúng section-wrap như About/Projects/Experience ══ -->
+  <div class="section-wrap" style="padding-top: calc(var(--nav-h) + 3.5rem); display:flex; flex-direction:column; align-items:center">
+    <a href="index.html#projects" class="pd-back" style="align-self:flex-start">&larr; Back to projects</a>
+
+    <span class="section-ey">Project 01</span>
+    <h1 class="section-h">Multimodal Video Retrieval System</h1>
+    <p class="section-sub">Text, on-screen text, and spoken-word search over a 300GB video corpus.</p>
+
+    <div class="pd-badges">
+      <span class="pd-badge">🐍 Python</span>
+      <span class="pd-badge">FiftyOne</span>
+      <span class="pd-badge">Gradio</span>
+      <span class="pd-badge">HuggingFace</span>
+      <span class="pd-badge">FAISS</span>
+    </div>
+
+    <hr class="section-div" style="width: 100%; margin: 0 0 2.2rem;">
+
+    <!-- ══ KHỐI NÀY Y HỆT content của project-1 trong projectsData (main.js) ══ -->
+    <div style="max-width: 720px">
+      <p class="pd-lede">A search engine over a 300GB corpus of news and event footage — find the right frame by describing what's on screen, what's written on it, or what was said.</p>
+
+      <div class="pd-stats">
+        <div class="pd-stat"><b>300GB</b><span>frame corpus</span></div>
+        <div class="pd-stat"><b>&lt;1s</b><span>query latency</span></div>
+        <div class="pd-stat"><b>4</b><span>vision encoders</span></div>
+      </div>
+
+      <div class="pd-h3">Overview</div>
+      <p class="pd-lede">News and event footage carries information in three places at once: what's visually happening, what text is on screen, and what's being said. This system indexes all three, so a single query — typed or implied — can pull the right frame out of hundreds of thousands of candidates in under a second.</p>
+
+      <div class="pd-h3">Technical Details</div>
+      <ul class="pd-list">
+          <li>Designed a multimodal text-to-image retrieval system over a 300GB frame corpus (news/event videos) using <code>SigLIP2</code>, <code>CLIP</code>, <code>FG-CLIP</code>, and <code>LAION-CLIP</code> as visual feature extractors, with <code>FAISS</code> for approximate nearest-neighbor search.</li>
+          <li>Achieved sub-second query latency by extracting embeddings across distributed GPU resources (remote GPU servers via SSH and Kaggle GPU), maximizing throughput without dedicated infrastructure.</li>
+          <li>Expanded retrieval coverage with a <code>PaddleOCR</code> pipeline to index on-screen text in frames, enabling accurate keyword-based search across the full dataset.</li>
+          <li>Added audio query support by transcribing video content via YouTube subtitle extraction and <code>Whisper</code>, enabling retrieval by spoken content.</li>
+      </ul>
+
+      <div class="pd-h3">Tech Stack</div>
+      <table class="pd-table">
+        <tr><th>Layer</th><th>Tools</th></tr>
+        <tr><td>Vision encoders</td><td>SigLIP2, CLIP, FG-CLIP, LAION-CLIP</td></tr>
+        <tr><td>Retrieval index</td><td>FAISS (approximate nearest-neighbor)</td></tr>
+        <tr><td>Text extraction</td><td>PaddleOCR</td></tr>
+        <tr><td>Audio transcription</td><td>Whisper, YouTube subtitles</td></tr>
+        <tr><td>Interface / tooling</td><td>Gradio, FiftyOne, HuggingFace</td></tr>
+        <tr><td>Compute</td><td>Remote GPU via SSH, Kaggle GPU</td></tr>
+      </table>
+
+      <div class="pd-note"><strong>Note:</strong> No dedicated infrastructure was used — embedding extraction was distributed across free/remote GPU resources, which meant designing the pipeline to checkpoint and resume across interruptible sessions.</div>
+
+      <div class="pd-cta"><a href="#" class="btn-p">View on GitHub</a></div>
+    </div>
+  </div>
+
+
+  <hr class="section-div">
+  <!-- ══ CONTACT ══ -->
+  <div class="section-wrap contact-center" id="contact">
+    <span class="section-ey" style="display:block;text-align:center">Let's connect</span>
+    <h2 class="section-h" style="margin-bottom:1rem">Open to conversations<br>and collaborations.</h2>
+    <p class="section-sub" style="max-width:430px;margin-left:auto;margin-right:auto;text-align:center">
+     "I have no special talent. I am only passionately curious." <br>Albert Einstein 
+    </p>
+    <div class="contact-links">
+      <a href="mailto:minhhuy210108@email.com" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        minhhuy210108@email.com
+      </a>
+      <a href="https://github.com/minhhuyng21" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+      <a href="https://linkedin.com/in/minh-huy-nguyen-92a643318" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="#" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Resume
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <span id="copyright-year"></span> Nguyen Minh Huy · Built with HTML, CSS & JS
+  </footer>
+
+</body>
+</html>
