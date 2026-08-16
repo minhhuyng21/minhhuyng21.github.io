@@ -1033,6 +1033,45 @@ footer {
   background: var(--accent);
   flex-shrink: 0;
 }
+.pd-reference-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-top: .3rem;
+}
+
+.pd-reference-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+
+  padding: .42rem .7rem;
+
+  border: 1px solid var(--border);
+  border-radius: 7px;
+
+  background: var(--tag-bg);
+  color: var(--sub);
+
+  font-size: .76rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition: background .2s ease, color .2s ease,
+              border-color .2s ease, transform .2s ease;
+}
+
+.pd-reference-links a:hover {
+  color: var(--text);
+  background: var(--card-hover);
+  border-color: var(--cert-border-hover);
+  transform: translateY(-1px);
+}
+
+.pd-ref-arrow {
+  font-size: .72rem;
+  opacity: .6;
+}
 .pd-badges { display: flex; flex-wrap: wrap; gap: .45rem; margin: 0 0 1.6rem; }
 .pd-badge {
   display: inline-flex; align-items: center; gap: .35rem;

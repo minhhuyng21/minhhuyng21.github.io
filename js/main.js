@@ -20,7 +20,7 @@ const projectsData = {
 // Khối HTML trong `content` được dùng lại y hệt trong project1.html
 
 "project-aic": {
-    icon: '<img src="assets/aic.png">',
+    icon: '<img src="assets/aic/aic.png">',
     title: "Multimodal Video Retrieval System",
     tags: ["Python", "PyTorch", "CLIP", "PaddleOCR", "FAISS", "Gradio"],
     fullPageUrl: "project_aic.html",
@@ -309,7 +309,7 @@ const projectsData = {
   </div>
 `
 },
-    "project-emotion": {
+  "project-emotion": {
     icon: '<img src="assets/face.jpg">',
     title: "Facial Emotion Analysis for Lesson Quality Evaluation",
     tags: ["Python", "HSEmotion", "OpenCV", "Matplotlib", "AutoGen"],
@@ -457,7 +457,7 @@ const projectsData = {
 
       <div class="pd-media">
         <img
-          src="assets/emotion-result.png"
+          src="assets/emotion/emotion-result.png"
           alt="Real-time facial emotion recognition result"
         >
       </div>
@@ -473,17 +473,17 @@ const projectsData = {
 
       <div class="pd-media pd-visual-grid">
         <figure>
-          <img src="assets/bar.png" alt="Emotion distribution bar chart">
+          <img src="assets/emotion/bar.png" alt="Emotion distribution bar chart">
           <figcaption>Emotion distribution</figcaption>
         </figure>
 
         <figure>
-          <img src="assets/pie.png" alt="Emotion distribution pie chart">
+          <img src="assets/emotion/pie.png" alt="Emotion distribution pie chart">
           <figcaption>Emotion proportions</figcaption>
         </figure>
 
         <figure>
-          <img src="assets/heat.png" alt="Emotion heatmap over time">
+          <img src="assets/emotion/heat.png" alt="Emotion heatmap over time">
           <figcaption>Emotion changes over time</figcaption>
         </figure>
       </div>
@@ -498,7 +498,7 @@ const projectsData = {
 
       <div class="pd-media">
         <img
-          src="assets/agent.png"
+          src="assets/emotion/agent.png"
           alt="AI-generated emotion analysis report"
         >
       </div>
@@ -653,21 +653,468 @@ const projectsData = {
       </div>
     `
 },
-    "cert-1": {
-    icon: "🏆",
-    title: "City-level Math Olympiad",
-    tags: ["2026", "Third Prize", "Ministry of Education"],
-    content: "<p>Đạt giải Ba kỳ thi học sinh giỏi Toán cấp thành phố. Đây là thành tích ghi nhận sự nỗ lực và đam mê bền bỉ đối với các mô hình Toán học và tư duy logic.</p>",
-    fullPageUrl: "" // Bỏ trống nếu không có trang chi tiết riêng
-    },
-  
-    "cert-2": {
-    icon: "📜",
-    title: "Google Data Analytics",
-    tags: ["2025", "Professional Cert", "Coursera"],
-    content: "<p>Chứng chỉ phân tích dữ liệu chuyên nghiệp từ Google. Khóa học đào sâu vào kỹ năng xử lý dữ liệu, phân tích truy vấn, trực quan hóa và đưa ra các quyết định dựa trên dữ liệu (Data-driven).</p>",
-    fullPageUrl: ""
-    },
+"project-chatbot": {
+    icon: '🤖',
+    title: "Virtual information Assisstant",
+    tags: ["Python", "Streamlit", "Langchain", "SQL", "Faiss"],
+    fullPageUrl: "project_chatbot.html",
+    content: `
+  <p class="pd-lede">
+    A retrieval-augmented assistant for searching and managing school and
+    organizational information across documents, websites, and structured databases.
+  </p>
+
+  <div class="pd-stats">
+    <div class="pd-stat">
+      <b>60</b>
+      <span>survey participants</span>
+    </div>
+
+    <div class="pd-stat">
+      <b>2</b>
+      <span>retrieval paths</span>
+    </div>
+
+    <div class="pd-stat">
+      <b>&lt;10s</b>
+      <span>hard-query response</span>
+    </div>
+
+    <div class="pd-stat">
+      <b>2</b>
+      <span>team members</span>
+    </div>
+  </div>
+
+  <div class="pd-h3">Problem</div>
+
+  <p class="pd-lede">
+    School and organizational information is often distributed across PDFs,
+    spreadsheets, documents, websites, and relational tables. Finding the right
+    information can require switching between systems and manually identifying
+    where the answer is stored.
+  </p>
+
+  <p class="pd-lede">
+    The research question was:
+    <b>
+      How can an automated chatbot help schools and organizations
+      retrieve and manage information more efficiently than traditional methods?
+    </b>
+  </p>
+
+  <div class="pd-h3">Research &amp; Motivation</div>
+
+  <p class="pd-lede">
+    We surveyed <b>60 participants</b>, primarily students, teachers, and
+    school-related users in Ho Chi Minh City, alongside participants from
+    companies and organizations. The survey indicated substantial demand for
+    finding and managing information, while difficulties in information
+    retrieval and management were also common.
+  </p>
+
+  <div class="pd-visual-grid">
+    <figure>
+      <img
+        src="assets/assistant/survey-participants.png"
+        alt="Survey participant distribution"
+      >
+      <figcaption>Survey participants</figcaption>
+    </figure>
+
+    <figure>
+      <img
+        src="assets/assistant/survey-companies.png"
+        alt="Survey organization distribution"
+      >
+      <figcaption>Participating organizations</figcaption>
+    </figure>
+
+    <figure>
+      <img
+        src="assets/assistant/survey-needs.png"
+        alt="Survey results about information needs"
+      >
+      <figcaption>Information needs reported by participants</figcaption>
+    </figure>
+  </div>
+
+  <div class="pd-note">
+    <strong>Research takeaway:</strong>
+    the survey supported the need for a unified interface that can search across
+    different information sources rather than relying on one storage format.
+  </div>
+
+  <div class="pd-h3">Approach</div>
+
+  <p class="pd-lede">
+    The system was designed around two complementary retrieval paths.
+    Unstructured text and web content are processed through a RAG pipeline,
+    while structured data such as timetables is queried through a SQL agent.
+  </p>
+
+  <div class="pd-media">
+    <img
+      src="assets/assistant/architecture.png"
+      alt="Virtual information assistant system architecture"
+    >
+  </div>
+
+  <div class="pd-h3">Data Pipeline</div>
+
+  <ul class="pd-list">
+    <li>
+      <b>Documents:</b>
+      PDF, CSV/Excel, and DOC content is loaded and normalized with
+      LangChain document loaders.
+    </li>
+
+    <li>
+      <b>Web data:</b>
+      school websites are collected with <code>Requests</code>
+      and parsed with <code>BeautifulSoup</code>.
+    </li>
+
+    <li>
+      <b>Structured data:</b>
+      tables such as timetables are converted and stored in a relational
+      SQL database for direct querying.
+    </li>
+  </ul>
+
+  <div class="pd-h3">RAG Pipeline</div>
+
+  <p class="pd-lede">
+    Text and web content are split into smaller chunks with
+    <code>RecursiveCharacterTextSplitter</code>, converted into vector
+    embeddings, and indexed with <code>FAISS</code> for semantic retrieval.
+  </p>
+
+  <div class="pd-media">
+    <img
+      src="assets/assistant/rag-flow.jpg"
+      alt="Retrieval-augmented generation pipeline"
+    >
+  </div>
+
+  <div class="pd-media">
+    <img
+      src="assets/assistant/embeddings.png"
+      alt="Text to embedding representation"
+    >
+  </div>
+
+  <div class="pd-h3">Structured Data &amp; SQL Agent</div>
+
+  <p class="pd-lede">
+    Structured information is stored in SQLite and queried through LangChain's
+    SQL tooling. A SQL agent converts natural-language questions into SQL queries,
+    executes them, and returns the relevant records.
+  </p>
+
+  <div class="pd-media">
+    <img
+      src="assets/assistant/sql-agent.png"
+      alt="SQL agent workflow"
+    >
+  </div>
+
+  <div class="pd-h3">Hybrid Query Routing</div>
+
+  <p class="pd-lede">
+    The prototype separates questions that require structured database access
+    from those that can be answered through documents and web data. Timetable-related
+    questions were routed to the SQL agent, while other questions were handled
+    through the text and web retrieval path.
+  </p>
+
+  <div class="pd-h3">Model &amp; Framework Selection</div>
+
+  <p class="pd-lede">
+    We compared <code>Llama3-8B-8192</code> and <code>GPT-4o</code> during development.
+    Both performed well on simpler tasks, while GPT-4o was selected for the project
+    because it performed better on more complex search and question-answering tasks
+    over mixed information.
+  </p>
+
+  <p class="pd-lede">
+    <code>LangChain</code> was used as the orchestration layer for retrieval,
+    embeddings, prompts, and SQL interaction, while <code>Streamlit</code>
+    provided the interactive web interface.
+  </p>
+
+  <div class="pd-media">
+    <img
+      src="assets/assistant/langchain.png"
+      alt="LangChain components used in the project"
+    >
+  </div>
+
+  <div class="pd-h3">Engineering Decisions</div>
+
+  <p class="pd-lede">
+    <b>Why combine RAG and SQL?</b>
+    Documents and web pages are naturally suited to semantic retrieval,
+    while highly structured information such as schedules is better represented
+    and queried as relational data. Separating the two paths keeps each retrieval
+    method aligned with the structure of the underlying data.
+  </p>
+
+  <p class="pd-lede">
+    <b>Why FAISS?</b>
+    The project needed a lightweight vector index for semantic retrieval
+    without introducing a larger distributed database into the prototype.
+  </p>
+
+  <p class="pd-lede">
+    <b>Why Streamlit?</b>
+    Streamlit allowed the prototype interface to be built directly in Python
+    and connected quickly to the underlying retrieval pipeline.
+  </p>
+
+  <div class="pd-h3">System Workflow</div>
+
+  <ol class="pd-list" style="list-style:decimal;padding-left:1.2rem;">
+    <li>User submits a natural-language question.</li>
+    <li>The system determines which information source is appropriate.</li>
+    <li>Text and web queries are handled through semantic retrieval and RAG.</li>
+    <li>Structured queries are handled through the SQL agent.</li>
+    <li>The LLM generates a natural-language response from the retrieved information.</li>
+  </ol>
+
+  <div class="pd-h3">Results</div>
+
+  <div class="pd-stats">
+    <div class="pd-stat">
+      <b>60</b>
+      <span>survey participants</span>
+    </div>
+
+    <div class="pd-stat">
+      <b>&lt;10s</b>
+      <span>maximum reported response time</span>
+    </div>
+
+    <div class="pd-stat">
+      <b>2</b>
+      <span>data-query paths</span>
+    </div>
+
+    <div class="pd-stat">
+      <b>1</b>
+      <span>unified interface</span>
+    </div>
+  </div>
+
+  <p class="pd-lede">
+    The completed prototype provided a responsive interface and handled both
+    simple and more complex information queries. The project documentation
+    reports a maximum response time of around <b>10 seconds for difficult questions</b>.
+  </p>
+
+  <div class="pd-h3">UI Demo</div>
+
+  <div class="pd-media pd-visual-grid">
+    <figure>
+      <img
+        src="assets/assistant/ui-01.png"
+        alt="Virtual assistant interface example 1"
+      >
+      <figcaption>General information retrieval</figcaption>
+    </figure>
+
+    <figure>
+      <img
+        src="assets/assistant/ui-02.png"
+        alt="Virtual assistant interface example 2"
+      >
+      <figcaption>Question answering flow</figcaption>
+    </figure>
+
+    <figure>
+      <img
+        src="assets/assistant/ui-03.jpg"
+        alt="Virtual assistant interface example 3"
+      >
+      <figcaption>School information assistant</figcaption>
+    </figure>
+  </div>
+
+  <div class="pd-h3">Constraints &amp; Risks</div>
+
+  <ul class="pd-list">
+    <li>
+      <b>Data privacy:</b>
+      school and organizational information may contain sensitive personal
+      data, so access controls and data-protection mechanisms are important
+      for real-world deployment.
+    </li>
+
+    <li>
+      <b>Model reliability:</b>
+      the assistant needs a fallback path for questions it cannot answer
+      reliably or when an external model or retrieval component fails.
+    </li>
+
+    <li>
+      <b>Data quality:</b>
+      retrieval quality depends on consistent preprocessing, chunking,
+      embeddings, and database structure.
+    </li>
+  </ul>
+
+  <div class="pd-note">
+    <strong>Research scope:</strong>
+    this project focused on demonstrating the architecture and feasibility
+    of a unified information assistant. Production deployment would require
+    stronger authentication, access control, evaluation, monitoring,
+    and privacy safeguards.
+  </div>
+
+  <div class="pd-h3">Future Work</div>
+
+  <ul class="pd-list">
+    <li>Introduce multi-agent routing for specialized domains and tasks.</li>
+    <li>Add account and role-based access control for sensitive information.</li>
+    <li>Improve retrieval and answer quality through broader evaluation datasets.</li>
+    <li>Expand from school information to enterprise, public-service, healthcare,
+      and other structured information environments.</li>
+    <li>Improve scalability and reliability for larger information collections.</li>
+  </ul>
+
+  <div class="pd-h3">Tech Stack</div>
+
+  <table class="pd-table">
+    <tr>
+      <th>Layer</th>
+      <th>Tools</th>
+    </tr>
+
+    <tr>
+      <td>Language</td>
+      <td>Python</td>
+    </tr>
+
+    <tr>
+      <td>LLM</td>
+      <td>GPT-4o</td>
+    </tr>
+
+    <tr>
+      <td>RAG / orchestration</td>
+      <td>LangChain</td>
+    </tr>
+
+    <tr>
+      <td>Embeddings</td>
+      <td>OpenAIEmbeddings · text-embedding-ada-002</td>
+    </tr>
+
+    <tr>
+      <td>Vector search</td>
+      <td>FAISS</td>
+    </tr>
+
+    <tr>
+      <td>Web data</td>
+      <td>Requests · BeautifulSoup</td>
+    </tr>
+
+    <tr>
+      <td>Structured data</td>
+      <td>SQLite · SQL · pandas · PdfPlumber</td>
+    </tr>
+
+    <tr>
+      <td>Interface</td>
+      <td>Streamlit</td>
+    </tr>
+  </table>
+
+  <div class="pd-h3">Project Information</div>
+
+  <table class="pd-table">
+    <tr>
+      <td>Project</td>
+      <td>Virtual Assistant for Managing Information &amp; Data</td>
+    </tr>
+
+    <tr>
+      <td>Authors</td>
+      <td>Nguyen Minh Huy &amp; Ha Chi Dung</td>
+    </tr>
+
+    <tr>
+      <td>Mentor</td>
+      <td>Bui Manh Tan</td>
+    </tr>
+
+    <tr>
+      <td>Institution</td>
+      <td>THPT Bui Thi Xuan, District 1, Ho Chi Minh City</td>
+    </tr>
+
+    <tr>
+      <td>Project Code</td>
+      <td>21_1001_10</td>
+    </tr>
+
+    <tr>
+      <td>Date</td>
+      <td>August 2024</td>
+    </tr>
+  </table>
+
+  <div class="pd-h3">References</div>
+
+  <ul class="pd-list">
+    <li>
+      <a href="https://www.langchain.com/" target="_blank" rel="noopener noreferrer">
+        LangChain
+      </a>
+    </li>
+
+    <li>
+      <a href="https://streamlit.io/" target="_blank" rel="noopener noreferrer">
+        Streamlit
+      </a>
+    </li>
+
+    <li>
+      <a href="https://python.langchain.com/v0.1/docs/use_cases/sql/" target="_blank" rel="noopener noreferrer">
+        LangChain Q&amp;A over SQL
+      </a>
+    </li>
+
+    <li>
+      <a href="https://github.com/RGGH/OpenAI_SQL" target="_blank" rel="noopener noreferrer">
+        OpenAI_SQL
+      </a>
+    </li>
+
+    <li>
+      <a href="https://github.com/thangnch/MiAI_Langchain_RAG" target="_blank" rel="noopener noreferrer">
+        MiAI_Langchain_RAG
+      </a>
+    </li>
+  </ul>
+
+  <div class="pd-cta">
+    <a href="https://github.com/HaDungx/KHKT_2024-2025" class="btn-p">View on GitHub</a>
+  </div>
+`},
+"project-yolo": {
+    icon: '🤖',
+    title: "Bui Thi Xuan High school Uniform detection",
+    tags: ["Python", "YOLO", "CV2", "Jetson Nano"],
+    fullPageUrl: "project_yolo.html",
+    content: `updating....`},
+"project-multiagent": {
+    icon: '🤖',
+    title: "Biology Multi Agent",
+    tags: ["Python", "CrewAI", "Autogen"],
+    fullPageUrl: "project_multiagent.html",
+    content: `updating....`},
 };
 
 
@@ -924,43 +1371,43 @@ const CERTS_DATA = [
   {
     title:  'Google AI Essentials',
     issuer: 'Google / Coursera · 2024',
-    img:    'assets/google.png',
+    img:    'assets/certi/google.png',
     orient: 'ls',
   },
   {
     title:  'City-level Math Olympiad',
     issuer: 'Ministry of Education · 2026',
-    img:    'assets/FIF.png',
+    img:    'assets/certi/FIF.png',
     orient: 'ls',
   },
   {
     title:  'Academic Ielts',
     issuer: 'British Council',
-    img:    'assets/ielts.png',
+    img:    'assets/certi/ielts.png',
     orient: 'pt',
   },
   {
     title:  'MODULE 1: FOUNDATION IN DEEP LEARNING, MACHINE LEARNING, COMPUTER VISION',
     issuer: 'New Turing Institute & PTNK Science Community',
-    img:    'assets/prise.png',
+    img:    'assets/certi/prise.png',
     orient: 'ls',
   },
   {
     title:  'Third-Prize: City-level Excellent Student Competition in Mathematics (Academic Year 2025-2026)',
     issuer: 'Ho Chi Minh City Level',
-    img:    'assets/math.png',
+    img:    'assets/certi/math.png',
     orient: 'pt',
   },  
   {
     title:  'Third Prize – Systems Software, Ho Chi Minh City High School Science and Engineering Fair (2024–2025)',
     issuer: 'Ho Chi Minh City Level',
-    img:    'assets/khkt.png',
+    img:    'assets/certi/khkt.png',
     orient: 'pt',
   },
   {
     title:  'Potential Award — AI Challenge (High School Category B) ',
     issuer: 'Youth Science and Technology Development Center, Ho Chi Minh City',
-    img:    'assets/aic_2025.png',
+    img:    'assets/certi/aic_2025.png',
     orient: 'pt',
   },
   // ── Thêm cert mới bên dưới ──
