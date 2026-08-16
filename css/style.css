@@ -964,6 +964,68 @@ footer {
   opacity: 0.8;
 }
 
+.pd-visual-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.pd-visual-grid figure {
+  min-width: 0;
+  margin: 0;
+  padding: 0.5rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.pd-visual-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.pd-visual-grid figcaption {
+  margin-top: 0.55rem;
+  text-align: center;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+@media (max-width: 700px) {
+  .pd-visual-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pd-visual-grid img {
+    height: auto;
+    max-height: 400px;
+  }
+}
+.pd-media {
+  width: 100%;
+  margin: 1.5rem 0 2rem;
+}
+
+.pd-media img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
+.pd-caption {
+  display: block;
+  padding: 0.7rem 0.4rem 0.25rem;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: center;
+}
+
 .pd-updated-dot {
   width: 5px;
   height: 5px;

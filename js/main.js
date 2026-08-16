@@ -25,207 +25,289 @@ const projectsData = {
     tags: ["Python", "PyTorch", "CLIP", "PaddleOCR", "FAISS", "Gradio"],
     fullPageUrl: "project_aic.html",
 
-    content: `
-        <p class="pd-lede">
-          A multimodal search engine for retrieving relevant frames from a
-          <b>300GB corpus of news and event footage</b> using visual content,
-          on-screen text, and spoken content.
-        </p>
+    content:`
+  <p class="pd-lede">
+    A multimodal search engine for retrieving relevant frames from a
+    <b>300GB corpus of news and event footage</b> using visual content,
+    on-screen text, and spoken content.
+  </p>
 
-        <div class="pd-stats">
-          <div class="pd-stat">
-            <b>300GB</b>
-            <span>video corpus</span>
-          </div>
-          <div class="pd-stat">
-            <b>175K+</b>
-            <span>indexed keyframes</span>
-          </div>
-          <div class="pd-stat">
-            <b>&lt;1s</b>
-            <span>query latency</span>
-          </div>
-          <div class="pd-stat">
-            <b>4</b>
-            <span>vision encoders</span>
-          </div>
-        </div>
+  <div class="pd-stats">
+    <div class="pd-stat">
+      <b>300GB</b>
+      <span>video corpus</span>
+    </div>
+    <div class="pd-stat">
+      <b>175K+</b>
+      <span>indexed keyframes</span>
+    </div>
+    <div class="pd-stat">
+      <b>&lt;1s</b>
+      <span>query latency</span>
+    </div>
+    <div class="pd-stat">
+      <b>4</b>
+      <span>vision models explored</span>
+    </div>
+  </div>
 
-        <div class="pd-h3">Problem</div>
+  <div class="pd-h3">Problem</div>
 
-        <p class="pd-lede">
-          News and event footage contains information across multiple
-          modalities: what appears visually, what is written on screen,
-          and what is being said.
-        </p>
+  <p class="pd-lede">
+    Large news and event video collections contain information across
+    multiple modalities: what appears visually, what is written on screen,
+    and what is being said.
+  </p>
 
-        <p class="pd-lede">
-          A retrieval system based on only one modality can therefore miss
-          relevant information. The goal was to build a unified system that
-          could retrieve the right frame from a large video collection using
-          different types of queries.
-        </p>
+  <p class="pd-lede">
+    Searching through hundreds of thousands of frames using only one signal
+    can therefore miss relevant content. Our goal was to build a retrieval
+    system that could search the corpus using visual, textual, and
+    spoken-content queries.
+  </p>
 
-        <div class="pd-h3">Approach</div>
+  <div class="pd-h3">Approach</div>
 
-        <p class="pd-lede">
-          I designed a multimodal retrieval pipeline covering three
-          information sources: visual content, on-screen text, and spoken
-          content.
-        </p>
+  <p class="pd-lede">
+    Our team built a multimodal retrieval pipeline with separate processing
+    stages for visual content, on-screen text, and spoken content, combined
+    through a unified search interface.
+  </p>
 
-        <div class="pd-media">
-          <!-- Architecture diagram -->
-        </div>
+  <div class="pd-media">
+    <!-- Architecture diagram -->
+  </div>
 
-        <div class="pd-h3">System Architecture</div>
+  <div class="pd-h3">System Architecture</div>
 
-        <ul class="pd-list">
-          <li>
-            <b>Keyframe extraction</b> — converted the video corpus into
-            representative frames for indexing.
-          </li>
+  <ul class="pd-list">
+    <li>
+      <b>Keyframe extraction</b> — converted the source videos into
+      representative frames for indexing and retrieval.
+    </li>
 
-          <li>
-            <b>Visual retrieval</b> — generated embeddings using
-            <code>SigLIP2</code>, <code>CLIP</code>,
-            <code>FG-CLIP</code>, and <code>LAION-CLIP</code>.
-          </li>
+    <li>
+      <b>Visual retrieval</b> — generated image embeddings using
+      <code>SigLIP2</code>, <code>CLIP</code>, <code>FG-CLIP</code>,
+      and <code>LAION-CLIP</code>.
+    </li>
 
-          <li>
-            <b>OCR retrieval</b> — extracted text appearing in frames with
-            <code>PaddleOCR</code>.
-          </li>
+    <li>
+      <b>OCR retrieval</b> — extracted on-screen text from frames with
+      <code>PaddleOCR</code> to support text-based search.
+    </li>
 
-          <li>
-            <b>Audio retrieval</b> — indexed spoken content through
-            YouTube subtitle extraction and <code>Whisper</code>.
-          </li>
+    <li>
+      <b>Spoken-content retrieval</b> — used available YouTube subtitles
+      and <code>Whisper</code> to obtain searchable spoken content.
+    </li>
 
-          <li>
-            <b>Vector search</b> — used <code>FAISS</code> for
-            approximate nearest-neighbor retrieval.
-          </li>
-        </ul>
+    <li>
+      <b>Vector search</b> — used <code>FAISS</code> for
+      approximate nearest-neighbor retrieval over image embeddings.
+    </li>
 
-        <div class="pd-h3">Technical Challenges</div>
+    <li>
+      <b>Dataset analysis</b> — used <code>FiftyOne</code> to inspect
+      the dataset and analyze retrieval results.
+    </li>
 
-        <ul class="pd-list">
-          <li>
-            Processing a <b>300GB</b> corpus required a pipeline that could
-            handle large-scale extraction, embedding, OCR, and indexing.
-          </li>
+    <li>
+      <b>Interface</b> — exposed the retrieval pipeline through
+      <code>Gradio</code>.
+    </li>
+  </ul>
 
-          <li>
-            Embedding extraction had to be distributed across remote GPU
-            resources and interruptible Kaggle sessions.
-          </li>
+  <div class="pd-h3">Technical Challenges</div>
 
-          <li>
-            Different modalities required separate retrieval pipelines
-            because visual similarity, OCR matching, and spoken content
-            represent relevance differently.
-          </li>
-        </ul>
+  <ul class="pd-list">
+    <li>
+      <b>Large-scale indexing:</b>
+      processing a 300GB corpus required separating keyframe extraction,
+      embedding generation, OCR, and indexing into independent stages.
+    </li>
 
-        <div class="pd-h3">Engineering Decisions</div>
+    <li>
+      <b>Limited compute resources:</b>
+      embedding and other expensive preprocessing tasks had to be distributed
+      across remote GPU resources and interruptible Kaggle sessions.
+    </li>
 
-        <p class="pd-lede">
-          <b>Why multiple vision encoders?</b>
-          Four vision-language models were evaluated as alternative
-          visual representations to compare their retrieval behavior.
-        </p>
+    <li>
+      <b>Device limitation:</b>
+      our team laptops lacked sufficient compute for local processing,
+      so heavy workloads were offloaded to a rented GPU server, accessed
+      remotely via SSH and exposed through <code>Cloudflare</code>.
+    </li>
 
-        <p class="pd-lede">
-          <b>Why FAISS?</b>
-          The dataset required efficient nearest-neighbor search over a large
-          embedding collection while keeping deployment simple.
-        </p>
+    <li>
+      <b>Multimodal retrieval:</b>
+      visual similarity, OCR matching, and spoken content represent
+      different forms of relevance, requiring separate retrieval paths.
+    </li>
 
-        <p class="pd-lede">
-          <b>Why checkpointing?</b>
-          Remote GPU sessions could be interrupted, so expensive processing
-          stages were designed to save intermediate outputs and resume without
-          recomputing the entire dataset.
-        </p>
+    <li>
+      <b>Resumable processing:</b>
+      remote GPU sessions could be interrupted, so intermediate outputs
+      had to be checkpointed to avoid repeating expensive computations.
+    </li>
+  </ul>
 
-        <div class="pd-h3">Results</div>
+  <div class="pd-h3">Engineering Decisions</div>
 
-        <div class="pd-stats">
-          <div class="pd-stat">
-            <b>175K+</b>
-            <span>keyframes</span>
-          </div>
+  <p class="pd-lede">
+    <b>Why multiple vision models?</b>
+  </p>
 
-          <div class="pd-stat">
-            <b>&lt;1s</b>
-            <span>query latency</span>
-          </div>
+  <p class="pd-lede">
+    As part of the competition, our team explored multiple vision-language
+    models in parallel. Each team member worked with a different model,
+    allowing us to compare their retrieval behavior on the same dataset:
+    <code>SigLIP2</code>, <code>CLIP</code>, <code>FG-CLIP</code>,
+    and <code>LAION-CLIP</code>.
+  </p>
 
-          <div class="pd-stat">
-            <b>4</b>
-            <span>vision models</span>
-          </div>
+  <p class="pd-lede">
+    <b>Why FAISS?</b>
+  </p>
 
-          <div class="pd-stat">
-            <b>___</b>
-            <span>Recall@K</span>
-          </div>
-        </div>
+  <p class="pd-lede">
+    The indexed embeddings required efficient nearest-neighbor search over
+    a large vector collection. <code>FAISS</code> provided approximate
+    vector retrieval without introducing a separate vector database,
+    keeping the deployment lightweight.
+  </p>
 
-        <div class="pd-h3">Tech Stack</div>
+  <div class="pd-h3">Results</div>
 
-        <table class="pd-table">
-          <tr>
-            <th>Layer</th>
-            <th>Tools</th>
-          </tr>
+  <p class="pd-lede">
+    The resulting system supports retrieval across visual content,
+    on-screen text, and spoken content over the indexed video corpus,
+    with the current implementation achieving sub-second query latency.
+  </p>
 
-          <tr>
-            <td>Vision</td>
-            <td>SigLIP2, CLIP, FG-CLIP, LAION-CLIP</td>
-          </tr>
+  <div class="pd-media">
+    <!-- Retrieval result screenshot / GIF -->
+  </div>
 
-          <tr>
-            <td>Retrieval</td>
-            <td>FAISS</td>
-          </tr>
+  <div class="pd-h3">UI Demo</div>
 
-          <tr>
-            <td>OCR</td>
-            <td>PaddleOCR</td>
-          </tr>
+  <p class="pd-lede">
+    The interactive demo is temporarily unavailable while we fix a
+    technical issue. We're working on a fix and will have it back soon.
+    Thanks for your patience.
+  </p>
 
-          <tr>
-            <td>Audio</td>
-            <td>Whisper, YouTube subtitles</td>
-          </tr>
+  <div class="pd-media">
+    <!-- UI screenshot / demo video -->
+  </div>
 
-          <tr>
-            <td>Interface</td>
-            <td>Gradio, FiftyOne</td>
-          </tr>
+  <div class="pd-h3">What I Built</div>
 
-          <tr>
-            <td>Compute</td>
-            <td>Remote GPU via SSH, Kaggle GPU</td>
-          </tr>
-        </table>
+  <ul class="pd-list">
+    <li>
+      End-to-end keyframe extraction and indexing pipeline.
+    </li>
 
-        <div class="pd-note">
-          <strong>Constraint:</strong>
-          the system was developed without dedicated infrastructure.
-          Expensive preprocessing had to run across remote and interruptible
-          GPU environments, making checkpointing and resumability important
-          parts of the implementation.
-        </div>
+    <li>
+      Visual embedding pipelines for multiple vision-language models.
+    </li>
 
-        <div class="pd-cta">
-          <a href="project_aic.html" class="btn-p">
-            View full case study →
-          </a>
-        </div>
-    `
+    <li>
+      GPU-based OCR processing pipeline with <code>PaddleOCR</code>.
+    </li>
+
+    <li>
+      FAISS-based approximate nearest-neighbor retrieval system.
+    </li>
+
+    <li>
+      Spoken-content indexing using subtitles and <code>Whisper</code>.
+    </li>
+
+    <li>
+      Interactive retrieval interface using <code>Gradio</code>.
+    </li>
+
+    <li>
+      Dataset inspection and retrieval-result analysis using
+      <code>FiftyOne</code>.
+    </li>
+
+    <li>
+      Checkpointing and resumable processing for remote GPU environments.
+    </li>
+  </ul>
+
+  <div class="pd-h3">Tech Stack</div>
+
+  <table class="pd-table">
+    <tr>
+      <th>Layer</th>
+      <th>Tools</th>
+    </tr>
+
+    <tr>
+      <td>Vision models</td>
+      <td>SigLIP2, CLIP, FG-CLIP, LAION-CLIP</td>
+    </tr>
+
+    <tr>
+      <td>Retrieval</td>
+      <td>FAISS</td>
+    </tr>
+
+    <tr>
+      <td>OCR</td>
+      <td>PaddleOCR</td>
+    </tr>
+
+    <tr>
+      <td>Spoken content</td>
+      <td>Whisper, YouTube subtitles</td>
+    </tr>
+
+    <tr>
+      <td>Interface</td>
+      <td>Gradio</td>
+    </tr>
+
+    <tr>
+      <td>Dataset analysis</td>
+      <td>FiftyOne</td>
+    </tr>
+
+    <tr>
+      <td>ML tooling</td>
+      <td>Hugging Face</td>
+    </tr>
+
+    <tr>
+      <td>Compute</td>
+      <td>Remote GPU via SSH, Kaggle GPU</td>
+    </tr>
+
+    <tr>
+      <td>Deployment</td>
+      <td>Cloudflare</td>
+    </tr>
+  </table>
+
+  <div class="pd-note">
+    <strong>Competition-driven engineering:</strong>
+    the project was developed under limited compute resources and
+    interruptible remote environments. This required distributing
+    expensive preprocessing, checkpointing intermediate results,
+    and deploying the application remotely so team members could use it
+    without requiring high-end hardware locally.
+  </div>
+
+  <div class="pd-cta">
+    <a href="project_aic.html" class="btn-p">
+      View full case study →
+    </a>
+  </div>
+`
 },
     "project-emotion": {
     icon: '<img src="assets/face.jpg">',
@@ -233,372 +315,342 @@ const projectsData = {
     tags: ["Python", "HSEmotion", "OpenCV", "Matplotlib", "AutoGen"],
     fullPageUrl: "project_emotion.html",
     content: `
-        <p class="pd-lede">
-          A real-time computer vision system that analyzes students' facial
-          expressions to estimate engagement and support evaluation of lesson quality.
-        </p>
+      <p class="pd-lede">
+        A real-time computer vision system that analyzes students' facial expressions
+        to estimate engagement and support evaluation of lesson quality.
+      </p>
 
-        <div class="pd-stats">
-          <div class="pd-stat"><b>3–6</b><span>FPS observed</span></div>
-          <div class="pd-stat"><b>4–5</b><span>FPS typical</span></div>
-          <div class="pd-stat"><b>6</b><span>test expressions</span></div>
-          <div class="pd-stat"><b>4</b><span>core components</span></div>
-        </div>
+      <div class="pd-stats">
+        <div class="pd-stat"><b>3–6</b><span>FPS observed</span></div>
+        <div class="pd-stat"><b>4–5</b><span>FPS typical</span></div>
+        <div class="pd-stat"><b>6</b><span>test expressions</span></div>
+        <div class="pd-stat"><b>4</b><span>core components</span></div>
+      </div>
 
-        <div class="pd-h3">Problem</div>
+      <div class="pd-h3">Problem</div>
 
-        <p class="pd-lede">
-          Traditional approaches to evaluating a lesson often rely on tests
-          or subjective feedback, which may not fully capture students'
-          reactions during the learning process.
-          This project explores whether facial-expression analysis can provide
-          an additional signal for understanding how students respond to a lesson.
-        </p>
+      <p class="pd-lede">
+        Traditional approaches to evaluating a lesson often rely on tests or subjective
+        feedback, which may not fully capture students' reactions during the learning process.
+        This project explores whether facial-expression analysis can provide an additional
+        signal for understanding how students respond to a lesson.
+      </p>
 
-        <div class="pd-h3">Approach</div>
+      <div class="pd-h3">Approach</div>
 
-        <p class="pd-lede">
-          I built a computer vision pipeline that captures facial expressions
-          in real time, aggregates emotion data over time, visualizes the results,
-          and uses an AI agent to generate an automated analysis report.
-        </p>
+      <p class="pd-lede">
+        I built a computer vision pipeline that captures facial expressions in real time,
+        aggregates emotion data over time, visualizes the results, and uses an AI agent
+        to generate an automated analysis report.
+      </p>
 
-        <div class="pd-media">
-          <!-- Architecture diagram -->
-        </div>
+      <div class="pd-media">
+        <!-- Architecture diagram -->
+      </div>
 
-        <div class="pd-h3">System Architecture</div>
+      <div class="pd-h3">System Architecture</div>
 
-        <ul class="pd-list">
-          <li>
-            <b>Face detection:</b>
-            detects students' faces from a live camera stream.
-          </li>
-          <li>
-            <b>Emotion recognition:</b>
-            classifies facial expressions using the
-            <code>enet_b0_8_best_afew</code> model from <code>HSEmotion</code>.
-          </li>
-          <li>
-            <b>Data collection:</b>
-            records detected emotions and aggregates them over time
-            for further analysis.
-          </li>
-          <li>
-            <b>Visualization:</b>
-            converts the collected data into bar, pie, and heatmap charts
-            using <code>Matplotlib</code>.
-          </li>
-          <li>
-            <b>Automated analysis:</b>
-            uses <code>AutoGen</code> to analyze the collected statistics
-            and generate a textual evaluation report.
-          </li>
-          <li>
-            <b>Real-time interface:</b>
-            uses <code>OpenCV</code> to capture the webcam stream and
-            display detection results directly on the video feed.
-          </li>
-        </ul>
+      <ul class="pd-list">
+        <li>
+          <b>Face detection:</b>
+          detects students' faces from a live camera stream.
+        </li>
 
-        <div class="pd-h3">Research &amp; Model Selection</div>
+        <li>
+          <b>Emotion recognition:</b>
+          classifies facial expressions using the
+          <code>enet_b0_8_best_afew</code> model from <code>HSEmotion</code>.
+        </li>
 
-        <p class="pd-lede">
-          I compared two approaches to facial-expression recognition:
-          a simpler detection-based approach and a multi-stage approach
-          involving face detection, facial landmarks, and emotion recognition.
-          The more advanced approach provides richer facial information
-          at the cost of additional computation.
-        </p>
+        <li>
+          <b>Data collection:</b>
+          records detected emotions and aggregates them over time for further analysis.
+        </li>
 
-        <p class="pd-lede">
-          For this project, models from <code>DeepFace</code>,
-          <code>HSEmotion</code>, <code>FaceTorch</code>, and Hugging Face
-          were investigated with a focus on the trade-off between
-          recognition quality and real-time performance.
-        </p>
+        <li>
+          <b>Visualization:</b>
+          converts the collected data into bar, pie, and heatmap charts using
+          <code>Matplotlib</code>.
+        </li>
 
-        <p class="pd-lede">
-          <b>Selected model:</b>
-          <code>enet_b0_8_best_afew</code> from <code>HSEmotion</code>,
-          chosen for its balance between recognition performance
-          and inference speed in real-time use.
-        </p>
+        <li>
+          <b>Automated analysis:</b>
+          uses <code>AutoGen</code> to analyze the collected statistics
+          and generate a textual evaluation report.
+        </li>
 
-        <div class="pd-h3">Technical Challenges</div>
+        <li>
+          <b>Real-time interface:</b>
+          uses <code>OpenCV</code> to capture the webcam stream and display
+          detection results directly on the video feed.
+        </li>
+      </ul>
 
-        <ul class="pd-list">
-          <li>
-            <b>Real-time processing:</b>
-            emotion recognition must keep up with the incoming webcam stream
-            while maintaining usable frame rates.
-          </li>
-          <li>
-            <b>Multiple processing stages:</b>
-            face detection, emotion recognition, data aggregation,
-            visualization, and reporting form a pipeline where upstream
-            processing can affect overall responsiveness.
-          </li>
-          <li>
-            <b>From raw predictions to useful analysis:</b>
-            individual emotion predictions are noisy signals, so the system
-            aggregates observations over time before producing higher-level
-            visualizations and analysis.
-          </li>
-        </ul>
+      <div class="pd-h3">Research &amp; Model Selection</div>
 
-        <div class="pd-h3">Engineering Decisions</div>
+      <p class="pd-lede">
+        I compared two approaches to facial-expression recognition: a simpler detection-based
+        approach and a multi-stage approach involving face detection, facial landmarks,
+        and emotion recognition. The more advanced approach provides richer facial information
+        at the cost of additional computation.
+      </p>
 
-        <p class="pd-lede">
-          <b>Why HSEmotion?</b>
-        </p>
+      <p class="pd-lede">
+        For this project, models from <code>DeepFace</code>, <code>HSEmotion</code>,
+        <code>FaceTorch</code>, and Hugging Face were investigated with a focus on the
+        trade-off between recognition quality and real-time performance.
+      </p>
 
-        <p class="pd-lede">
-          The project prioritized a practical balance between recognition
-          quality and real-time inference speed. HSEmotion was selected
-          after comparing several available facial-expression recognition
-          approaches.
-        </p>
+      <p class="pd-lede">
+        <b>Selected model:</b>
+        <code>enet_b0_8_best_afew</code> from <code>HSEmotion</code>,
+        chosen for its balance between recognition performance and inference speed
+        in real-time use.
+      </p>
 
-        <p class="pd-lede">
-          <b>Why real-time processing?</b>
-        </p>
+      <div class="pd-h3">Technical Challenges</div>
 
-        <p class="pd-lede">
-          Real-time feedback allows the system to observe changes in
-          students' expressions throughout a lesson instead of relying
-          only on a final questionnaire or assessment.
-        </p>
+      <ul class="pd-list">
+        <li>
+          <b>Real-time processing:</b>
+          emotion recognition must keep up with the incoming webcam stream
+          while maintaining usable frame rates.
+        </li>
 
-        <p class="pd-lede">
-          <b>Why aggregate the predictions?</b>
-        </p>
+        <li>
+          <b>Multiple processing stages:</b>
+          face detection, emotion recognition, data aggregation, visualization,
+          and reporting form a pipeline where upstream processing can affect
+          overall responsiveness.
+        </li>
 
-        <p class="pd-lede">
-          Individual frame-level predictions provide limited information
-          about the overall lesson. Aggregating emotion observations over
-          time makes it possible to visualize changes in emotional state
-          and identify periods that may require further analysis.
-        </p>
+        <li>
+          <b>From raw predictions to useful analysis:</b>
+          individual emotion predictions are noisy signals, so the system aggregates
+          observations over time before producing higher-level visualizations and analysis.
+        </li>
+      </ul>
 
-        <div class="pd-h3">Results</div>
+      <div class="pd-h3">Engineering Decisions</div>
 
-        <div class="pd-stats">
-          <div class="pd-stat"><b>6 / 6</b><span>test expressions recognized</span></div>
-          <div class="pd-stat"><b>3–6</b><span>FPS observed</span></div>
-          <div class="pd-stat"><b>4–5</b><span>FPS typical</span></div>
-          <div class="pd-stat"><b>___</b><span>students tested</span></div>
-        </div>
+      <p class="pd-lede">
+        <b>Why HSEmotion?</b>
+        The project prioritized a practical balance between recognition quality
+        and real-time inference speed. HSEmotion was selected after comparing
+        several available facial-expression recognition approaches.
+      </p>
 
-        <p class="pd-lede">
-          In a controlled test using six images with different facial
-          expressions, the selected HSEmotion model correctly identified
-          all six tested expressions under normal environmental conditions.
-          The observed processing speed ranged from approximately 3 to 6 FPS,
-          with typical performance around 4–5 FPS in low-person-count scenarios.
-        </p>
+      <p class="pd-lede">
+        <b>Why real-time processing?</b>
+        Real-time feedback allows the system to observe changes in students'
+        expressions throughout a lesson instead of relying only on a final
+        questionnaire or assessment.
+      </p>
 
-        <div class="pd-media">
-          <!-- Emotion recognition result screenshot -->
-        </div>
+      <p class="pd-lede">
+        <b>Why aggregate the predictions?</b>
+        Individual frame-level predictions provide limited information about
+        the overall lesson. Aggregating emotion observations over time makes it
+        possible to visualize changes in emotional state and identify periods
+        that may require further analysis.
+      </p>
 
-        <div class="pd-h3">Data Visualization</div>
+      <div class="pd-media">
+        <img
+          src="assets/emotion-result.png"
+          alt="Real-time facial emotion recognition result"
+        >
+      </div>
 
-        <p class="pd-lede">
-          The system summarizes detected emotions using three visualization
-          formats: bar charts, pie charts, and heatmaps. These visualizations
-          make it easier to inspect the distribution of emotions and observe
-          how emotional states change over time.
-        </p>
+      <div class="pd-h3">Data Visualization</div>
 
-        <div class="pd-media">
-          <!-- Bar / pie / heatmap screenshots -->
-        </div>
+      <p class="pd-lede">
+        The system summarizes detected emotions using three visualization formats:
+        bar charts, pie charts, and heatmaps. These visualizations make it easier
+        to inspect the distribution of emotions and observe how emotional states
+        change over time.
+      </p>
 
-        <div class="pd-h3">Automated Analysis</div>
+      <div class="pd-media pd-visual-grid">
+        <figure>
+          <img src="assets/bar.png" alt="Emotion distribution bar chart">
+          <figcaption>Emotion distribution</figcaption>
+        </figure>
 
-        <p class="pd-lede">
-          After the emotion data is collected and visualized, an
-          <code>AutoGen</code>-based AI agent analyzes the resulting statistics
-          and generates a textual report for the user.
-        </p>
+        <figure>
+          <img src="assets/pie.png" alt="Emotion distribution pie chart">
+          <figcaption>Emotion proportions</figcaption>
+        </figure>
 
-        <div class="pd-media">
-          <!-- AI-generated report screenshot -->
-        </div>
+        <figure>
+          <img src="assets/heat.png" alt="Emotion heatmap over time">
+          <figcaption>Emotion changes over time</figcaption>
+        </figure>
+      </div>
 
-        <div class="pd-h3">What I Built</div>
+      <div class="pd-h3">Automated Analysis</div>
 
-        <ul class="pd-list">
-          <li>
-            Real-time webcam-based facial-expression detection pipeline.
-          </li>
-          <li>
-            Emotion recognition using the HSEmotion
-            <code>enet_b0_8_best_afew</code> model.
-          </li>
-          <li>
-            Emotion data collection and temporal aggregation pipeline.
-          </li>
-          <li>
-            Real-time visualization of predictions with OpenCV.
-          </li>
-          <li>
-            Statistical visualization using Matplotlib.
-          </li>
-          <li>
-            Automated analysis and report generation using AutoGen.
-          </li>
-          <li>
-            PDF-based output containing the aggregated analysis results.
-          </li>
-        </ul>
+      <p class="pd-lede">
+        After the emotion data is collected and visualized, an
+        <code>AutoGen</code>-based AI agent analyzes the resulting statistics
+        and generates a textual report for the user.
+      </p>
 
-        <div class="pd-h3">Evaluation</div>
+      <div class="pd-media">
+        <img
+          src="assets/agent.png"
+          alt="AI-generated emotion analysis report"
+        >
+      </div>
 
-        <table class="pd-table">
-          <tr>
-            <th>Experiment</th>
-            <th>Metric</th>
-            <th>Result</th>
-          </tr>
-          <tr>
-            <td>Facial-expression recognition</td>
-            <td>Correct predictions</td>
-            <td>6 / 6 test images</td>
-          </tr>
-          <tr>
-            <td>Real-time inference</td>
-            <td>FPS</td>
-            <td>3–6 FPS</td>
-          </tr>
-          <tr>
-            <td>Typical runtime</td>
-            <td>FPS</td>
-            <td>4–5 FPS</td>
-          </tr>
-          <tr>
-            <td>Multi-person performance</td>
-            <td>________</td>
-            <td>________</td>
-          </tr>
-        </table>
+      <div class="pd-h3">What I Built</div>
 
-        <div class="pd-h3">Constraints</div>
+      <ul class="pd-list">
+        <li>
+          Real-time webcam-based facial-expression detection pipeline.
+        </li>
 
-        <p class="pd-lede">
-          The system currently performs emotion recognition directly from
-          a real-time camera stream. Increasing the number of people in the
-          scene increases the processing load and can reduce responsiveness.
-        </p>
+        <li>
+          Emotion recognition using the HSEmotion
+          <code>enet_b0_8_best_afew</code> model.
+        </li>
 
-        <div class="pd-note">
-          <strong>Current trade-off:</strong>
-          real-time inference provides immediate feedback, but processing
-          multiple faces simultaneously can reduce throughput.
-        </div>
+        <li>
+          Emotion data collection and temporal aggregation pipeline.
+        </li>
 
-        <div class="pd-h3">Challenges &amp; Iterations</div>
+        <li>
+          Real-time visualization of predictions with OpenCV.
+        </li>
 
-        <ul class="pd-list">
-          <li>
-            <b>________:</b>
-            _______________________________________________
-          </li>
-          <li>
-            <b>________:</b>
-            _______________________________________________
-          </li>
-          <li>
-            <b>________:</b>
-            _______________________________________________
-          </li>
-        </ul>
+        <li>
+          Statistical visualization using Matplotlib.
+        </li>
 
-        <div class="pd-h3">Limitations</div>
+        <li>
+          Automated analysis and report generation using AutoGen.
+        </li>
 
-        <ul class="pd-list">
-          <li>
-            Current evaluation is based on a limited controlled test set;
-            broader validation is still needed.
-          </li>
-          <li>
-            Real-time performance decreases as the number of simultaneously
-            detected students increases.
-          </li>
-          <li>
-            Facial-expression recognition alone cannot fully determine
-            whether a student understands or is engaged with the lesson.
-          </li>
-          <li>
-            _______________________________________________
-          </li>
-        </ul>
+        <li>
+          PDF-based output containing the aggregated analysis results.
+        </li>
+      </ul>
 
-        <div class="pd-h3">Future Work</div>
+      <div class="pd-h3">Constraints</div>
 
-        <ul class="pd-list">
-          <li>
-            Use facial landmarks and FACS Action Units to capture
-            more fine-grained facial behavior beyond basic emotion labels.
-          </li>
-          <li>
-            Add gaze tracking and face-pose estimation to detect
-            possible loss of attention.
-          </li>
-          <li>
-            Introduce identity recognition to associate observations
-            with individual students in a controlled environment.
-          </li>
-          <li>
-            Use accumulated lesson data to identify periods of low engagement
-            and automatically suggest improvements to teaching content.
-          </li>
-          <li>
-            Parallelize face detection and emotion recognition to reduce
-            end-to-end processing latency.
-          </li>
-          <li>
-            Explore asynchronous post-lesson analysis as an alternative
-            when real-time processing is not required.
-          </li>
-          <li>
-            _______________________________________________
-          </li>
-        </ul>
+      <p class="pd-lede">
+        The system currently performs emotion recognition directly from a real-time
+        camera stream. Increasing the number of people in the scene increases
+        the processing load and can reduce responsiveness.
+      </p>
 
-        <div class="pd-h3">Tech Stack</div>
+      <div class="pd-note">
+        <strong>Current trade-off:</strong>
+        real-time inference provides immediate feedback, but processing multiple
+        faces simultaneously can reduce throughput.
+      </div>
 
-        <table class="pd-table">
-          <tr>
-            <th>Layer</th>
-            <th>Tools</th>
-          </tr>
-          <tr>
-            <td>Face &amp; emotion recognition</td>
-            <td>HSEmotion</td>
-          </tr>
-          <tr>
-            <td>Video processing</td>
-            <td>OpenCV</td>
-          </tr>
-          <tr>
-            <td>Visualization</td>
-            <td>Matplotlib</td>
-          </tr>
-          <tr>
-            <td>AI analysis</td>
-            <td>AutoGen</td>
-          </tr>
-          <tr>
-            <td>Language</td>
-            <td>Python</td>
-          </tr>
-        </table>
+      <div class="pd-h3">Limitations</div>
 
-        <div class="pd-cta">
-          <a href="#" class="btn-p">View on GitHub</a>
-        </div>
+      <ul class="pd-list">
+        <li>
+          Current evaluation is based on a limited controlled test set;
+          broader validation is still needed.
+        </li>
+
+        <li>
+          Real-time performance decreases as the number of simultaneously
+          detected students increases.
+        </li>
+
+        <li>
+          Facial-expression recognition alone cannot fully determine whether
+          a student understands or is engaged with the lesson.
+        </li>
+      </ul>
+
+      <div class="pd-h3">Future Work</div>
+
+      <ul class="pd-list">
+        <li>
+          Use facial landmarks and FACS Action Units to capture more fine-grained
+          facial behavior beyond basic emotion labels.
+        </li>
+
+        <li>
+          Add gaze tracking and face-pose estimation to detect possible loss of attention.
+        </li>
+
+        <li>
+          Introduce identity recognition to associate observations with individual
+          students in a controlled environment.
+        </li>
+
+        <li>
+          Use accumulated lesson data to identify periods of low engagement
+          and automatically suggest improvements to teaching content.
+        </li>
+
+        <li>
+          Parallelize face detection and emotion recognition to reduce
+          end-to-end processing latency.
+        </li>
+
+        <li>
+          Explore asynchronous post-lesson analysis as an alternative
+          when real-time processing is not required.
+        </li>
+      </ul>
+
+      <div class="pd-h3">Tech Stack</div>
+
+      <table class="pd-table">
+        <tr>
+          <th>Layer</th>
+          <th>Tools</th>
+        </tr>
+
+        <tr>
+          <td>Face &amp; emotion recognition</td>
+          <td>HSEmotion</td>
+        </tr>
+
+        <tr>
+          <td>Video processing</td>
+          <td>OpenCV</td>
+        </tr>
+
+        <tr>
+          <td>Visualization</td>
+          <td>Matplotlib</td>
+        </tr>
+
+        <tr>
+          <td>AI analysis</td>
+          <td>AutoGen</td>
+        </tr>
+
+        <tr>
+          <td>Interface</td>
+          <td>Streamlit</td>
+        </tr>
+
+        <tr>
+          <td>Language</td>
+          <td>Python</td>
+        </tr>
+      </table>
+
+      <div class="pd-cta">
+        <a
+          href="https://github.com/minhhuyng21/Facial-emotion-recognition"
+          class="btn-p"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View on GitHub
+        </a>
+      </div>
     `
 },
     "cert-1": {
