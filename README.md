@@ -1,4 +1,4 @@
-# Minh Huy — Personal Portfolio
+# minhhuyng21.github.io
 
 > Personal portfolio website showcasing my projects, skills, achievements, and interests.
 
